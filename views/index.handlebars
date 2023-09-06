@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astronomy API</title>
+</head>
+
+<body>
+  <h1>Astronomy API</h1>
+<form id="astroForm">
+    <label for="date">Date:</label><br>
+    <input type="date" id="date" name="date"><br>
+    <label for="time">Time:</label><br>
+    <input type="time" id="time" name="time"><br>
+    <label for="longitude">Longitude:</label><br>
+    <input type="number" id="longitude" name="longitude"><br>
+    <label for="latitude">Latitude:</label><br>
+    <input type="number" id="latitude" name="latitude"><br>
+    <label for="elevation">Elevation:</label><br>
+    <input type="number" id="elevation" name="elevation"><br><br>
+    <input type="submit" value="submit">
+  </form>
+
+  <script>
+    document.getElementById('astroForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const longitude = document.getElementById('longitude').value;
+      const latitude = document.getElementById('latitude').value;
+      const elevation = document.getElementById('elevation').value;
+
+      fetch('/calculate', {
+      // fetch('http://localhost:3001/api/celestial-routes/calculate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          date,
+          time,
+          longitude,
+          latitude,
+          elevation,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+           window.location.href = "/personalized-astrology-natal-chart";
+          // console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+
+</html>
