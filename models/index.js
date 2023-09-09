@@ -1,15 +1,27 @@
-// const User = require('./User');
-const CelestialBodyData = require('./celestialBodyData');
+const Member = require('./Member');
+const CelestialBodyData = require('./CelestialBodyData');
 const AstrologyAspectData = require('./AstrologyAspectData');
 
+// CelestialBodyData to AstrologyAspectData for body_id_1
 CelestialBodyData.hasMany(AstrologyAspectData, {
-    foreignKey: 'body_id',
-    as: 'aspects'
+    foreignKey: 'body_id_1',
+    as: 'aspects_1'
 });
 
 AstrologyAspectData.belongsTo(CelestialBodyData, {
-    foreignKey: 'body_id',
+    foreignKey: 'body_id_1',
+    as: 'body_1'
 });
 
+// CelestialBodyData to AstrologyAspectData for body_id_2
+CelestialBodyData.hasMany(AstrologyAspectData, {
+    foreignKey: 'body_id_2',
+    as: 'aspects_2'
+});
 
-module.exports = { CelestialBodyData, AstrologyAspectData };
+AstrologyAspectData.belongsTo(CelestialBodyData, {
+    foreignKey: 'body_id_2',
+    as: 'body_2'
+});
+
+module.exports = { Member, CelestialBodyData, AstrologyAspectData };

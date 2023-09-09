@@ -1,10 +1,16 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class CelestialBodyData extends Model {}
+class CelestialBodyData extends Model { }
 
 CelestialBodyData.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     date: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -13,7 +19,6 @@ CelestialBodyData.init(
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    
     azimuth: {
       type: DataTypes.FLOAT,
       allowNull: false,
@@ -66,10 +71,6 @@ CelestialBodyData.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    // astrology_aspects: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // }
   },
   {
     sequelize,

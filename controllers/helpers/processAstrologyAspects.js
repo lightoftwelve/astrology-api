@@ -38,7 +38,6 @@ function processAstrologyAspects(celestialBodiesInfo) {
       .catch(error => console.error('Error saving aspect data:', error));
 }
 
-
 module.exports = { processAstrologyAspects };
 
 // function processAstrologyAspects(celestialBodiesInfo) {

@@ -7,8 +7,7 @@ const { processAstrologyAspects } = require('../helpers/processAstrologyAspects'
 const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
 // const { getInterpretation } = require('../helpers/getInterpretation');
-const CelestialBodyData = require('../../models/celestialBodyData');
-const AstrologyAspectData = require('../../models/AstrologyAspectData');
+const { CelestialBodyData, AstrologyAspectData } = require('../../models/index')
 
 if (!process.env.ASTRONOMY_API_KEY) {
   throw new Error('ASTRONOMY_API_KEY environment variable is not defined');
@@ -122,17 +121,6 @@ router.post('/calculate', (req, res) => {
       // Processing Aspects
       const astrologyAspects = processAstrologyAspects(celestialBodiesInfo);
 
-      // new for the next two parts
-      // const astrologyAspectsToInsert = astrologyAspects.map(aspect => ({
-      //   body1: aspect.body1,
-      //   body2: aspect.body2,
-      //   aspect: aspect.aspect
-      // }));
-
-      // AstrologyAspectData.bulkCreate(astrologyAspectsToInsert)
-      //   .then(data => console.log('Astrology aspects saved successfully:', data))
-      //   .catch(error => console.error('Error saving astrology aspects:', error));
-
       // Declination and Right Ascension of Sun
       const sunData = celestialBodiesInfo.find(body => body.name === 'Sun');
       const decOfSun = sunData.cellData.declination;
@@ -212,18 +200,27 @@ router.get('/astrology-aspects', async (req, res) => {
 
 router.get('/celestial-with-aspects', async (req, res) => {
   try {
-    const celestialDataWithAspects = await CelestialBodyData.findAll({
-      include: [{
-        model: AstrologyAspectData,
-        as: 'aspects'
-      }]
+    const data = await CelestialBodyData.findAll({
+      include: [
+        {
+          model: AstrologyAspectData,
+          as: 'aspects_1'
+        },
+        {
+          model: AstrologyAspectData,
+          as: 'aspects_2'
+        }
+      ]
     });
-    res.json(celestialDataWithAspects);
-  } catch (err) {
-    res.status(500).json({ message: "Server error", error: err });
+
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({
+      message: "Server error",
+      error: error
+    });
   }
 });
-
 
 module.exports = router;
 

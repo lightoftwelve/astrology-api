@@ -1,0 +1,37 @@
+[
+    {
+        "body_id_1": "sun",
+        "body_name_1": "Sun",
+        "body_id_2": "moon",
+        "body_name_2": "Moon",
+        "aspect": "Conjunction"
+    },
+    {
+        "body_id_1": "venus",
+        "body_name_1": "Venus",
+        "body_id_2": "mars",
+        "body_name_2": "Mars",
+        "aspect": "Opposition"
+    },
+    {
+        "body_id_1": "mercury",
+        "body_name_1": "Mercury",
+        "body_id_2": "jupiter",
+        "body_name_2": "Jupiter",
+        "aspect": "Trine"
+    },
+    {
+        "body_id_1": "saturn",
+        "body_name_1": "Saturn",
+        "body_id_2": "jupiter",
+        "body_name_2": "Jupiter",
+        "aspect": "Sextile"
+    },
+    {
+        "body_id_1": "neptune",
+        "body_name_1": "Neptune",
+        "body_id_2": "pluto",
+        "body_name_2": "Pluto",
+        "aspect": "Square"
+    }
+]

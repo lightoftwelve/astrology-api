@@ -1,0 +1,32 @@
+[
+    {
+        "first_name": "Duchess",
+        "last_name": "Vulcano",
+        "email": "d.vul@hotmail.com",
+        "password": "password199"
+    },
+    {
+        "first_name": "Marvin",
+        "last_name": "Stewart",
+        "email": "marvs@hotmail.com",
+        "password": "password92"
+    },
+    {
+        "first_name": "Lucky",
+        "last_name": "Turtle",
+        "email": "tanktheturtle@yahoo.com",
+        "password": "password65"
+    },
+    {
+        "first_name": "Smiley",
+        "last_name": "Toothpaste",
+        "email": "biggrin@aol.com",
+        "password": "password96"
+    },
+    {
+        "first_name": "Salad",
+        "last_name": "Dressing",
+        "email": "frenchdressing@gmail.com",
+        "password": "password82"
+    }
+]
