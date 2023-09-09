@@ -7,4 +7,4 @@ function calculateLST(longitude, date) {
     return LST % 360; // Ensure the result is between 0 and 360 degrees
 }
 
-module.exports = {calculateLST} ;
+module.exports = { calculateLST };

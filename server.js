@@ -13,7 +13,7 @@ const { Configuration, OpenAIApi } = require('openai');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create({ });
+const hbs = exphbs.create({});
 
 // Configure and link a session object with the sequelize store
 const sess = {
@@ -40,14 +40,6 @@ app.use(routes);
 
 sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
-      console.log(`App listening on port ${PORT}`);
+    console.log(`App listening on port ${PORT}`);
   });
 });
-
-// sequelize.sync({ force: true }) // This will drop the table and re-create it
-//   .then(() => {
-//     console.log('Database synchronized');
-//   })
-//   .catch(error => {
-//     console.error('Error synchronizing the database', error);
-//   });

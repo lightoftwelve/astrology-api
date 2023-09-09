@@ -8,6 +8,7 @@ const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
 // const { getInterpretation } = require('../helpers/getInterpretation');
 const CelestialBodyData = require('../../models/celestialBodyData');
+const AstrologyAspectData = require('../../models/AstrologyAspectData');
 
 if (!process.env.ASTRONOMY_API_KEY) {
   throw new Error('ASTRONOMY_API_KEY environment variable is not defined');
@@ -23,6 +24,7 @@ const headers = {
 };
 
 // TODO: Translate ascendant into constellation sign
+
 function getCellData(cells, bodyId, bodyName) {
   let cell = cells[0];
   const date = cell.date;
@@ -56,16 +58,6 @@ function getCellData(cells, bodyId, bodyName) {
   };
 }
 
-// function logCelestialData(cellData) {
-//   console.log('Date:', cellData.date);
-//   console.log('Altitude (degrees):', cellData.altitude);
-//   console.log('Azimuth (degrees):', cellData.azimuth);
-//   // ... (Print other cell data)
-//   console.log('---'); // Separator
-//   // });
-//   console.log('===================='); // Separator)
-// }
-
 // Equal House System
 // Route for calculating birthchart data
 router.post('/calculate', (req, res) => {
@@ -82,6 +74,7 @@ router.post('/calculate', (req, res) => {
   axios.get(ASTRONOMY_API_URL, { params, headers })
     .then(response => {
       const data = response.data.data;
+      console.log("Raw API Response:", response.data);
 
       // Extract and log dates
       const fromDate = data.dates.from;
@@ -124,16 +117,27 @@ router.post('/calculate', (req, res) => {
         const body_name = body.name;
         body.body_id = body_id;
         body.body_name = body_name;
-        // logCelestialData(body.cellData);
       });
 
       // Processing Aspects
       const astrologyAspects = processAstrologyAspects(celestialBodiesInfo);
 
+      // new for the next two parts
+      // const astrologyAspectsToInsert = astrologyAspects.map(aspect => ({
+      //   body1: aspect.body1,
+      //   body2: aspect.body2,
+      //   aspect: aspect.aspect
+      // }));
+
+      // AstrologyAspectData.bulkCreate(astrologyAspectsToInsert)
+      //   .then(data => console.log('Astrology aspects saved successfully:', data))
+      //   .catch(error => console.error('Error saving astrology aspects:', error));
+
       // Declination and Right Ascension of Sun
       const sunData = celestialBodiesInfo.find(body => body.name === 'Sun');
       const decOfSun = sunData.cellData.declination;
       const raOfSun = sunData.cellData.rightAscension;
+      console.log('Sun Data, Dec of Sun & Ra of Sun: returns normally', sunData, decOfSun, raOfSun);
 
       //Calculate Local Sidereal Time
       const LST = calculateLST(longitude, new Date());
@@ -176,7 +180,7 @@ router.post('/calculate', (req, res) => {
       // const sunInfo = celestialBodiesInfo.find(body => body.name === 'Sun');
       // const houseNumber = sunInfo.house;
       // const interpretation = getInterpretation('Sun', houseNumber, null);
- 
+
       res.json({
         LST,
         ascendant,
@@ -196,6 +200,30 @@ router.post('/calculate', (req, res) => {
       res.status(500).json({ error: 'Error fetching data' });
     });
 });
+
+router.get('/astrology-aspects', async (req, res) => {
+  try {
+    const aspectsData = await AstrologyAspectData.findAll();
+    res.json(aspectsData);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err });
+  }
+});
+
+router.get('/celestial-with-aspects', async (req, res) => {
+  try {
+    const celestialDataWithAspects = await CelestialBodyData.findAll({
+      include: [{
+        model: AstrologyAspectData,
+        as: 'aspects'
+      }]
+    });
+    res.json(celestialDataWithAspects);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err });
+  }
+});
+
 
 module.exports = router;
 
