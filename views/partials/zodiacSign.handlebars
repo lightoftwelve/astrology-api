@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac Sign Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <h1>Zodiac Sign Calculator</h1>
+
+    <form action="/zodiac-sign" method="POST">
+        <input type="text" id="birthdate" placeholder="Select your birthdate">
+        <button id="calculateButton">Calculate Zodiac Sign</button>
+        <div id="result"></div>
+    </form>
+
+    {{#if zodiacSign}}
+    <p>Your zodiac sign is {{zodiacSign}}</p>
+    {{/if}}
+</body>
+<script src="../../public/js/zodiacSign.js"></script>
+
+</html>

@@ -6,6 +6,7 @@ const { calculateAscendant } = require('../helpers/calculateAscendant');
 const { processAstrologyAspects } = require('../helpers/processAstrologyAspects');
 const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
+const { calculateZodiacSign } = require('../helpers/calculateZodiacSign');
 // const { getInterpretation } = require('../helpers/getInterpretation');
 const { CelestialBodyData, AstrologyAspectData } = require('../../models/index')
 
@@ -56,6 +57,19 @@ function getCellData(cells, bodyId, bodyName) {
     magnitude
   };
 }
+
+// Separate route for calculating the zodiac sign
+router.post('/zodiac-sign', (req, res) => {
+  const { date } = req.body;
+
+  // Uses the calculateZodiacSign function with the provided 'date'
+  const zodiacSign = calculateZodiacSign(date);
+
+  res.json({
+    zodiacSign
+  });
+});
+
 
 // Equal House System
 // Route for calculating birthchart data
@@ -118,6 +132,10 @@ router.post('/calculate', (req, res) => {
         body.body_name = body_name;
       });
 
+      // Calculate Sun Sign
+      // const zodiacSign = calculateZodiacSign(date);
+      // console.log(`The user's zodiac sign is ${zodiacSign}`);
+
       // Processing Aspects
       const astrologyAspects = processAstrologyAspects(celestialBodiesInfo);
 
@@ -170,6 +188,7 @@ router.post('/calculate', (req, res) => {
       // const interpretation = getInterpretation('Sun', houseNumber, null);
 
       res.json({
+        // zodiacSign,
         LST,
         ascendant,
         houseCusps,

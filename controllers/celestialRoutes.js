@@ -1,11 +1,19 @@
 const router = require('express').Router();
 
+// Sun Sign / Zodiac Sign
+app.post('/zodiac-sign', (req, res) => {
+  const { date } = req.body;
+  const zodiacSign = calculateZodiacSign(date);
+
+  res.json({ zodiacSign });
+});
+
 // Frontend route to render a form for user input
 router.get('/generate-personalized-astrology-natal-chart', (req, res) => {
-   // Fetch the celestial data interpretations from the database
-    // Render the results.hbs view with the fetched data
-    res.render('results', { interpretations: fetchedData });
-  });
+  // Fetch the celestial data interpretations from the database
+  // Render the results.hbs view with the fetched data
+  res.render('results', { interpretations: fetchedData });
+});
 
 
 module.exports = router;

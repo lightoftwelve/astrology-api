@@ -1,6 +1,6 @@
 const Member = require('./Member');
-const CelestialBodyData = require('./CelestialBodyData');
 const AstrologyAspectData = require('./AstrologyAspectData');
+const CelestialBodyData = require('./CelestialBodyData');
 
 // CelestialBodyData to AstrologyAspectData for body_id_1
 CelestialBodyData.hasMany(AstrologyAspectData, {
