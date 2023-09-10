@@ -15,6 +15,14 @@ CelestialBodyData.init(
             type: DataTypes.DATE,
             allowNull: false,
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'member',
+                key: 'id',
+            },
+        },
         body_id: {
             type: DataTypes.STRING,
             allowNull: false,

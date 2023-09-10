@@ -7,6 +7,7 @@ const { processAstrologyAspects } = require('../helpers/processAstrologyAspects'
 const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
 const { calculateZodiacSign } = require('../helpers/calculateZodiacSign');
+const isAuthenticated = require('../../utils/isAuthenticated');
 // const { getInterpretation } = require('../helpers/getInterpretation');
 const { CelestialBodyData, AstrologyAspectData } = require('../../models/index')
 
@@ -59,8 +60,9 @@ function getCellData(cells, bodyId, bodyName) {
 // --------------------------------------------
 // Route for calculating birthchart data & Equal House System
 // --------------------------------------------
-router.post('/calculate', (req, res) => {
+router.post('/calculate', isAuthenticated, (req, res) => {
   const { longitude, latitude, elevation, date, time } = req.body;
+  const userId = req.user.id; // Extract the user ID from the session
   const params = {
     longitude,
     latitude,
@@ -95,6 +97,7 @@ router.post('/calculate', (req, res) => {
       // Map rows | EX: { entry: { id: 'sun', name: 'Sun' }, cells: [ [Object] ] },
       const celestialBodiesInfo = rows.map(row => {
         const entry = row.entry;
+
         const bodyId = entry.id; // planet
         const bodyName = entry.name; // Planet Name
         const cells = row.cells; // Object per planet
@@ -146,7 +149,7 @@ router.post('/calculate', (req, res) => {
       });
 
       // Transform data for insertion
-      const celestialBodyDataToInsert = celestialBodiesInfo.flatMap(body => ({ ...body.cellData, body_id: body.body_id, body_name: body.body_name }))
+      const celestialBodyDataToInsert = celestialBodiesInfo.flatMap(body => ({ ...body.cellData, body_id: body.body_id, body_name: body.body_name, user_id: userId }));
 
       // const interpretations = {};
       console.log(celestialBodyDataToInsert);

@@ -2,11 +2,21 @@ const router = require('express').Router();
 
 // Sun Sign / Zodiac Sign
 router.post('/zodiac-sign', (req, res) => {
-  const { date } = req.body;
-  const zodiacSign = calculateZodiacSign(date);
+  try {
+    console.log('Accessed /zodiac-sign route');
+    const { date } = req.body;
+    const zodiacSign = calculateZodiacSign(date);
 
-  res.json({ zodiacSign });
+    // Find the corresponding zodiac sign data
+    const zodiacSignData = zodiacData.find(item => item.sign === zodiacSign);
+
+    res.json({ zodiacSignData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error fetching celestial data' });
+  }
 });
+
 
 // Frontend route to render a form for user input
 router.get('/generate-personalized-astrology-natal-chart', (req, res) => {

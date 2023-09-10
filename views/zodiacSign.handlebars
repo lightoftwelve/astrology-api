@@ -19,10 +19,15 @@
         <div id="result"></div>
     </form>
 
-    {{#if zodiacSign}}
-    <p>Your zodiac sign is {{zodiacSign}}</p>
+    {{#if zodiacSignData}}
+    <h2>{{zodiacSignData.sign}}</h2>
+    <img src="{{zodiacSignData.imageUrl}}" alt="{{zodiacSignData.sign}}">
+    <p>Dates: {{zodiacSignData.dates}}</p>
+    <p>Description: {{zodiacSignData.sign_meaning}}</p>
     {{/if}}
+
+    {{footer}}
 </body>
-<script src="../public/js/zodiacSign.js"></script>
+<script src="/js/zodiacSign.js"></script>
 
 </html>
