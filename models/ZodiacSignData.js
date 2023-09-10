@@ -24,7 +24,8 @@ ZodiacSignData.init({
     },
     imageUrl: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'default_image_url_here'
     },
     sign_meaning: {
         type: DataTypes.TEXT,
