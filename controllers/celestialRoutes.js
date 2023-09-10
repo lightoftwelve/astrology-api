@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 // Sun Sign / Zodiac Sign
-app.post('/zodiac-sign', (req, res) => {
+router.post('/zodiac-sign', (req, res) => {
   const { date } = req.body;
   const zodiacSign = calculateZodiacSign(date);
 

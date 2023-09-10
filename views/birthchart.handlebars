@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Submission</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places"></script>
+</head>
+
+<body>
+
+    <form id="userForm">
+        <label for="name">Name/Nickname:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="M" required>
+        <label for="male">M</label>
+        <input type="radio" id="female" name="gender" value="F">
+        <label for="female">F</label>
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label><br><br>
+
+        <label for="birthday">Birthday:</label>
+        <input type="text" id="birthday" name="date" required><br><br>
+
+        <label for="time">Time:</label>
+        <select id="hour" name="hour" required>
+            <!-- Options from 0 to 23 for hours -->
+        </select>
+        <select id="minute" name="minute" required>
+            <!-- Options from 0 to 59 for minutes -->
+        </select>
+        <select id="second" name="second" required>
+            <!-- Options from 0 to 59 for seconds -->
+        </select><br><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" required><br><br>
+
+        <!-- Hidden fields to hold longitude, latitude, and elevation -->
+        <input type="hidden" id="longitude" name="longitude">
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="elevation" name="elevation">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="results"></div>
+
+</body>
+
+</html>

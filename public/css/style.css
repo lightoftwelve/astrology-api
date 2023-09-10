@@ -1,0 +1,47 @@
+:root {
+    --white: #fff;
+    --babyblue: #b0e0e6;
+    --gold: #9F6B5D;
+    --purple: #9C416E;
+    --darker: #251342;
+    --darkest: #130A21;
+    --black: #000;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../images/galaxy-flower-background.jpg') no-repeat;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#container {
+    text-align: center;
+}
+
+#logo {
+    width: 200px;
+    height: 200px;
+    background: url('../images/logos/white-lightoftwelve-logo.png') no-repeat center;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+#signInButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--white);
+    border: none;
+    border-radius: 5px;
+    color: var(--darkest);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#signInButton:hover {
+    color: var(--white);
+    background-color: var(--darkest);
+}

@@ -1,0 +1,86 @@
+[
+    {
+        "sign": "Aries",
+        "symbol": "Ram",
+        "dates": "March 21 - April 19",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Taurus",
+        "symbol": "Bull",
+        "dates": "April 20 - May 20",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Gemini",
+        "symbol": "Twins",
+        "dates": "May 21 - June 21",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Cancer",
+        "symbol": "Crab",
+        "dates": "June 22 - July 22",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Leo",
+        "symbol": "Lion",
+        "dates": "July 23 - August 22",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Virgo",
+        "symbol": "Virgin",
+        "dates": "August 23 - September 22",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Libra",
+        "symbol": "Balance",
+        "dates": "September 23 - October 23",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Scorpio",
+        "symbol": "Scorpion",
+        "dates": "October 24 - November 21",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Sagittarius",
+        "symbol": "Archer",
+        "dates": "November 22 - December 21",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Capricorn",
+        "symbol": "Goat",
+        "dates": "December 22 - January 19",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Aquarius",
+        "symbol": "Water Bearer",
+        "dates": " January 20 - February 18",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    },
+    {
+        "sign": "Pisces",
+        "symbol": "Fish",
+        "dates": "February 19 - March 20",
+        "imgUrl": "placeholder",
+        "sign_meaning": "placeholder"
+    }
+]

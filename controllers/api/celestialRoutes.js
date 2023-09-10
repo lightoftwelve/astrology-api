@@ -10,21 +10,19 @@ const { calculateZodiacSign } = require('../helpers/calculateZodiacSign');
 // const { getInterpretation } = require('../helpers/getInterpretation');
 const { CelestialBodyData, AstrologyAspectData } = require('../../models/index')
 
-if (!process.env.ASTRONOMY_API_KEY) {
-  throw new Error('ASTRONOMY_API_KEY environment variable is not defined');
-}
-
+// --------------------------------------------
+//     Connection to AstromonyAPI (astronomyapi.com)
+// --------------------------------------------
+if (!process.env.ASTRONOMY_API_KEY) { throw new Error('ASTRONOMY_API_KEY environment variable is not defined'); }
 const ASTRONOMY_API_URL = process.env.ASTRONOMY_API_URL;
 const ASTRONOMY_API_ID = process.env.ASTRONOMY_API_ID;
 const ASTRONOMY_API_KEY = process.env.ASTRONOMY_API_KEY;
-
 const authString = Buffer.from(`${process.env.ASTRONOMY_API_ID}:${process.env.ASTRONOMY_API_KEY}`).toString('base64');
-const headers = {
-  Authorization: `Basic ${authString}`
-};
+const headers = { Authorization: `Basic ${authString}` };
 
-// TODO: Translate ascendant into constellation sign
-
+// --------------------------------------------
+//     Extracting planetary data from API
+// --------------------------------------------
 function getCellData(cells, bodyId, bodyName) {
   let cell = cells[0];
   const date = cell.date;
@@ -58,21 +56,9 @@ function getCellData(cells, bodyId, bodyName) {
   };
 }
 
-// Separate route for calculating the zodiac sign
-router.post('/zodiac-sign', (req, res) => {
-  const { date } = req.body;
-
-  // Uses the calculateZodiacSign function with the provided 'date'
-  const zodiacSign = calculateZodiacSign(date);
-
-  res.json({
-    zodiacSign
-  });
-});
-
-
-// Equal House System
-// Route for calculating birthchart data
+// --------------------------------------------
+// Route for calculating birthchart data & Equal House System
+// --------------------------------------------
 router.post('/calculate', (req, res) => {
   const { longitude, latitude, elevation, date, time } = req.body;
   const params = {
@@ -132,10 +118,6 @@ router.post('/calculate', (req, res) => {
         body.body_name = body_name;
       });
 
-      // Calculate Sun Sign
-      // const zodiacSign = calculateZodiacSign(date);
-      // console.log(`The user's zodiac sign is ${zodiacSign}`);
-
       // Processing Aspects
       const astrologyAspects = processAstrologyAspects(celestialBodiesInfo);
 
@@ -150,18 +132,13 @@ router.post('/calculate', (req, res) => {
       console.log('Local Sidereal Time:', LST);
 
       // Calculate Ascendant (Currently gives back numeric value)
+      // TODO: Translate ascendant into constellation sign
       const ascendant = calculateAscendant(LST, latitude, decOfSun, raOfSun);
       console.log('Ascendant:', ascendant);
 
       // Calculate House Cusps (Check if its working | Equal House System)
       const houseCusps = calculateHouseCusps(ascendant);
       console.log('House Cusps:', houseCusps);
-      // Calculate house cusps
-      // const houseCusps = [];
-      // for (let i = 0; i < 12; i++) {
-      //   houseCusps[i] = (ascendant + i * 30) % 360;
-      // }
-      // console.log('House Cusps:', houseCusps);
 
       // Calculate House
       celestialBodiesInfo.forEach(body => {
@@ -173,34 +150,17 @@ router.post('/calculate', (req, res) => {
 
       // const interpretations = {};
       console.log(celestialBodyDataToInsert);
-      // celestialBodiesInfo.forEach(body => {
-      //     const houseNumber = body.house;
-      //     const interpretation = getInterpretation(body.name, houseNumber, null);
-      //     interpretations[body.name] = interpretation;
-      // });
 
-      CelestialBodyData.bulkCreate(celestialBodyDataToInsert)
-        .then(data => console.log('Data saved successfully:', data))
-        .catch(error => console.error('Error saving data:', error));
-
-      // const sunInfo = celestialBodiesInfo.find(body => body.name === 'Sun');
-      // const houseNumber = sunInfo.house;
-      // const interpretation = getInterpretation('Sun', houseNumber, null);
+      CelestialBodyData.bulkCreate(celestialBodyDataToInsert) // returningn fine
+      // .then(data => console.log('Data saved successfully:', data))
+      // .catch(error => console.error('Error saving data:', error));
 
       res.json({
-        // zodiacSign,
         LST,
         ascendant,
         houseCusps,
         celestialBodiesInfo,
-        // sunInterpretation: interpretation, 
-        // interpretations
       });
-
-      // res.render('results', {
-      //   interpretations
-      // });
-
     })
     .catch(error => {
       console.error('Error fetching data:', error);
@@ -208,6 +168,25 @@ router.post('/calculate', (req, res) => {
     });
 });
 
+
+// --------------------------------------------
+//   Route for calculating the zodiac / sun sign
+// --------------------------------------------
+router.post('/zodiac-sign', (req, res) => {
+  const { date } = req.body;
+
+  // Uses the calculateZodiacSign function with the provided 'date'
+  const zodiacSign = calculateZodiacSign(date);
+
+  res.json({
+    zodiacSign
+  });
+});
+
+// --------------------------------------------
+//         Route for calculating aspects
+// --------------------------------------------
+// can only be internal unless it can fetch planet data
 router.get('/astrology-aspects', async (req, res) => {
   try {
     const aspectsData = await AstrologyAspectData.findAll();
@@ -217,29 +196,32 @@ router.get('/astrology-aspects', async (req, res) => {
   }
 });
 
-router.get('/celestial-with-aspects', async (req, res) => {
-  try {
-    const data = await CelestialBodyData.findAll({
-      include: [
-        {
-          model: AstrologyAspectData,
-          as: 'aspects_1'
-        },
-        {
-          model: AstrologyAspectData,
-          as: 'aspects_2'
-        }
-      ]
-    });
+// --------------------------------------------
+//   Route for viewing celestialbodydata with associated astrologyaspectdata
+// --------------------------------------------
+// router.get('/celestial-with-aspects', async (req, res) => {
+//   try {
+//     const data = await CelestialBodyData.findAll({
+//       include: [
+//         {
+//           model: AstrologyAspectData,
+//           as: 'aspects_1'
+//         },
+//         {
+//           model: AstrologyAspectData,
+//           as: 'aspects_2'
+//         }
+//       ]
+//     });
 
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({
-      message: "Server error",
-      error: error
-    });
-  }
-});
+//     res.json(data);
+//   } catch (error) {
+//     res.status(500).json({
+//       message: "Server error",
+//       error: error
+//     });
+//   }
+// });
 
 module.exports = router;
 

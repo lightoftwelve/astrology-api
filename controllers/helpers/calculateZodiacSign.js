@@ -28,4 +28,6 @@ function calculateZodiacSign(date) {
     }
 }
 
+// need to save it to zodiacdata
+
 module.exports = { calculateZodiacSign }; 

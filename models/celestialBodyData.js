@@ -15,6 +15,16 @@ CelestialBodyData.init(
             type: DataTypes.DATE,
             allowNull: false,
         },
+        body_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            // Added an index to the body_id column to correct error
+            unique: true,
+        },
+        body_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         altitude: {
             type: DataTypes.FLOAT,
             allowNull: false,
@@ -59,14 +69,6 @@ CelestialBodyData.init(
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        body_id: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        body_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         house: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -80,5 +82,6 @@ CelestialBodyData.init(
         modelName: 'celestial_body_data',
     }
 );
+
 
 module.exports = CelestialBodyData;

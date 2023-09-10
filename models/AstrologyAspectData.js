@@ -1,4 +1,3 @@
-// astrologyaspectdata.js
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -6,6 +5,12 @@ class AstrologyAspectData extends Model { }
 
 AstrologyAspectData.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         body_id_1: {
             type: DataTypes.STRING,
             allowNull: false,

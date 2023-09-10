@@ -33,8 +33,6 @@ function getClosestAspect(angularSeparation) {
     return closestAspect.name;
 }
 
-// Now you can process celestialBodiesInfo and save it or use it with OpenAI
-
 module.exports = {
     calculateAngularSeparation,
     getClosestAspect

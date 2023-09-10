@@ -1,6 +1,5 @@
 [
     {
-        "id": "sun_001",
         "date": "2023-09-09",
         "altitude": 15.5,
         "azimuth": 220.3,
@@ -18,7 +17,6 @@
         "house": 5
     },
     {
-        "id": "moon_001",
         "date": "2023-09-09",
         "altitude": 21.3,
         "azimuth": 180.1,
@@ -36,7 +34,6 @@
         "house": 4
     },
     {
-        "id": "venus_001",
         "date": "2023-09-09",
         "altitude": 25.7,
         "azimuth": 110.8,
@@ -54,7 +51,6 @@
         "house": 6
     },
     {
-        "id": "mars_001",
         "date": "2023-09-09",
         "altitude": 17.8,
         "azimuth": 205.6,
@@ -72,7 +68,6 @@
         "house": 8
     },
     {
-        "id": "mercury_001",
         "date": "2023-09-09",
         "altitude": 20.2,
         "azimuth": 150.3,
