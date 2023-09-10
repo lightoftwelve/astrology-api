@@ -121,6 +121,7 @@ footer {
     color: #ecf0f1;
     padding: 40px 0 10px 0;
     margin-top: 50px;
+    width: 100vw;
 }
 
 .footer-content {
@@ -130,11 +131,16 @@ footer {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 30px;
+    width: 100vw !important;
 }
 
 .footer-content h3 {
     padding-bottom: 10px;
 }
+
+/* --------------------------------------
+             FOOTER: ABOUT & POLICIES
+  --------------------------------------*/
 
 .about-me {
     padding-left: 30px;
@@ -154,6 +160,9 @@ h3 {
     font-size: 20px;
 }
 
+/* --------------------------------------
+         FOOTER: RESOURCES & SHOP
+  --------------------------------------*/
 .resources a,
 .shop a {
     text-decoration: none;
@@ -171,10 +180,47 @@ h3 {
     list-style: none;
 }
 
-.social-media a {
-    margin-right: 15px;
+/* --------------------------------------
+             FOOTER: SHARE
+  --------------------------------------*/
+.chatWithUs {
+    display: flex;
+}
+
+.geoIcon {
+    width: 30%;
+}
+
+.geoIcon i {
+    text-decoration: none;
+    color: var(--white);
+    border: 1px var(--white) solid;
+    border-radius: 50%;
+    padding: 15px;
+}
+
+.geoIcon a {
     color: var(--white);
     text-decoration: none;
+    font-size: 30px;
+}
+
+.contactHours {
+    width: 75%;
+    line-height: 1.3;
+    margin-bottom: 20px;
+}
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    border: 1px var(--white) solid;
+    border-radius: 50%;
+    color: var(--white);
+    text-decoration: none;
+    padding: 7px;
 }
 
 .social-media img {
@@ -192,8 +238,12 @@ h3 {
     text-align: right;
     margin-top: 30px;
     font-size: 14px;
-    margin-right: 10px;
+    width: 100%;
     padding: 10px;
+}
+
+.footer-bottom span {
+    margin-right: 50px;
 }
 
 .footer-bottom a {
