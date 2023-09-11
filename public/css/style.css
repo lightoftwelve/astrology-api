@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant&display=swap');
+
 :root {
     --white: #fff;
     --babyblue: #b0e0e6;
@@ -9,6 +12,192 @@
 }
 
 body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-size: 36px;
+
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+h4 {
+    font-size: 16px;
+}
+
+h5 {
+    font-size: 12px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Cormorant', serif;
+}
+
+p {
+    font-size: 16px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: center;
+
+}
+
+nav {
+    font-family: 'Cormorant', serif;
+}
+
+/* --------------------------------------
+            HEADER NAV & LINKS
+  --------------------------------------*/
+.headerMenu {
+    padding: 1vw 2vw;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-size: cover;
+    background-image: url('../images/galaxy-flower-background.jpg');
+}
+
+.iconWidth {
+    flex: 1;
+}
+
+.logo {
+    justify-content: left;
+    width: 135px;
+    height: 135px;
+    background: url('../images/logos/white-lightoftwelve-logo.png') no-repeat center;
+    background-size: contain;
+}
+
+.links {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links a {
+    margin: 0 15px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.links a:hover {
+    margin: 0 15px;
+    color: var(--purple);
+}
+
+.sign-in {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+
+    font-size: 16px;
+    color: var(--white);
+}
+
+.sign-in span {
+    font-size: 14px;
+    font-family: 'Cormorant', serif;
+    margin-left: 10px;
+}
+
+/* --------------------------------------
+           HEADER BANNER
+  --------------------------------------*/
+.banner {
+    padding: 1vw 2vw;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-color: var(--darkest);
+}
+
+.banner a {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.bannerSpan {
+    margin-right: 10px;
+}
+
+.left {
+    flex: 1;
+    display: flex;
+    justify-content: left;
+}
+
+.left a {
+    margin-right: 10px;
+}
+
+.left a:hover {
+    color: var(--purple);
+}
+
+.left a i,
+.share-icons a i {
+    margin-right: 3px;
+}
+
+.center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.rightSideBanner {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+}
+
+.bannerSpanShare {
+    font-size: 12px;
+    margin-right: 7px;
+}
+
+.headerShare {
+    display: flex;
+    align-items: center;
+}
+
+.headerShare a {
+    padding: 3px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.headerShare a:hover {
+    color: var(--purple);
+}
+
+/* --------------------------------------
+             LOGIN PAGE
+  --------------------------------------*/
+
+.loginPage {
     font-family: Arial, sans-serif;
     background: url('../images/galaxy-flower-background.jpg') no-repeat;
     color: var(--white);
@@ -16,18 +205,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-#container {
-    text-align: center;
-}
-
-#logo {
-    width: 200px;
-    height: 200px;
-    background: url('../images/logos/white-lightoftwelve-logo.png') no-repeat center;
-    background-size: contain;
-    margin: 0 auto;
+    font-family: 'Cormorant', serif;
 }
 
 #signInButton {
@@ -46,12 +224,12 @@ body {
     background-color: var(--darkest);
 }
 
+
 /* --------------------------------------
                CONTACT SECTION
   --------------------------------------*/
-
 .contact {
-    max-width: 800px;
+    /* max-width: 800px; */
     margin: 40px auto;
     background-color: var(--white);
     padding: 40px;
@@ -139,7 +317,7 @@ footer {
 }
 
 /* --------------------------------------
-             FOOTER: ABOUT & POLICIES
+        FOOTER: ABOUT & POLICIES
   --------------------------------------*/
 
 .about-me {
@@ -249,4 +427,68 @@ h3 {
 .footer-bottom a {
     color: var(--darkest);
     text-decoration: none;
+}
+
+@media (max-width: 991px) {
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    #logo {
+        margin: 0;
+    }
+
+    .links {
+        display: none;
+    }
+
+    .links a {
+        font-size: 1.2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .links.active a {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--black);
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .toggle {
+        display: block;
+        position: fixed;
+        top: 55px;
+        right: 40px;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        background: var(--white) url(/public/images/logos/menu.png);
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 10;
+    }
+
+    .toggle.active {
+        background: var(--white) url(/public/images/logos/close.png);
+        background-size: 25px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .banner {
+        display: none;
+    }
 }

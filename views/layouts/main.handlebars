@@ -1,15 +1,18 @@
-<!-- change, using example from class for starter idea -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Registry</title>
-  <link rel="stylesheet" href="/css/jass.css">
+  <title>Light of Twelve | Astrology</title>
+  <link rel="icon" href="/images/logos/black-lightoftwelve-logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
+  {{> header}}
+
   <header class="display-flex justify-space-between align-center p-2">
     <h1>
       User Registry
@@ -24,14 +27,14 @@
   <main class="container container-fluid mt-5">
     {{{ body }}}
   </main>
-  <footer>
-      
-  </footer>
 
   <!-- Only include the logout script if the user is logged in -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+
+  <!-- footer partial template -->
+  {{> footer}}
 </body>
 
 </html>
