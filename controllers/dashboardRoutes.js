@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Member } = require('../models');
-const isAuthenticated = require('../utils/isAuthenticated');
+const isAuthenticatedView = require('../utils/isAuthenticated');
 
-router.get('/', isAuthenticated, async (req, res) => {
+router.get('/', isAuthenticatedView, async (req, res) => {
     try {
         const memberData = await Member.findAll({
             attributes: { exclude: ['password'] },
@@ -20,6 +20,7 @@ router.get('/', isAuthenticated, async (req, res) => {
     }
 });
 
+// login
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');

@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const isAuthenticatedView = require('../utils/isAuthenticated');
 
-// Sun Sign / Zodiac Sign
-router.post('/zodiac-sign', (req, res) => {
+// astrology/zodiac-sign
+router.post('/zodiac-sign', isAuthenticatedView, (req, res) => {
   try {
     console.log('Accessed /zodiac-sign route');
     const { date } = req.body;
@@ -17,9 +18,9 @@ router.post('/zodiac-sign', (req, res) => {
   }
 });
 
-
 // Frontend route to render a form for user input
-router.get('/generate-personalized-astrology-natal-chart', (req, res) => {
+// astrology/generate-personalized-astrology-natal-chart
+router.get('/generate-personalized-astrology-natal-chart', isAuthenticatedView, (req, res) => {
   // Fetch the celestial data interpretations from the database
   // Render the results.hbs view with the fetched data
   res.render('results', { interpretations: fetchedData });

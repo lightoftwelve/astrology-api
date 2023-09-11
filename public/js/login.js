@@ -1,26 +1,47 @@
-const signinHandler = async (event) => {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', async function () {
+    const signInButton = document.querySelector('#signInButton');
+    const signInText = document.querySelector('#signInText');
 
-    // Gather the data from the form elements on the page
-    const email = document.querySelector('#email-login').value.trim();
-    const password = document.querySelector('#password-login').value.trim();
-
-    if (email && password) {
-        // Send the e-mail and password to the server
-        const response = await fetch('/api/users/login', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: { 'Content-Type': 'application/json' },
-        });
-
-        if (response.ok) {
-            document.location.replace('/');
-        } else {
-            alert('Failed to log in');
+    // Function to check if the user is logged in and changes the button accordingly
+    const checkLoggedIn = async () => {
+        try {
+            const response = await fetch('/api/members/status');
+            if (response.ok) {
+                const data = await response.json();
+                if (data.loggedIn) {
+                    signInText.textContent = 'SIGN OUT';
+                } else {
+                    signInText.textContent = 'SIGN IN';
+                }
+            }
+        } catch (error) {
+            console.error('Error checking login status:', error);
         }
-    }
-};
+    };
 
-document
-    .querySelector('.login-form')
-    .addEventListener('submit', signinHandler);
+    // Event listener for the "SIGN IN" button
+    signInButton.addEventListener('click', async () => {
+
+        // If the user is logged in, initiate the logout process
+        if (signInText.textContent === 'SIGN OUT') {
+            try {
+                // Send a POST request to log the user out
+                const response = await fetch('/api/members/logout', {
+                    method: 'POST',
+                });
+
+                if (response.ok) {
+                    window.location.href = '/login'; // Redirect to the login page after logout
+                } else {
+                    alert('Logout failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+            }
+        } else {
+            window.location.href = '/login'; // If the user is not logged in, just redirect to the login page
+        }
+    });
+
+    checkLoggedIn(); // Check the login status when the page loads
+});

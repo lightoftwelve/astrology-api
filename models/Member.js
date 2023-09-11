@@ -16,6 +16,10 @@ Member.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -37,6 +41,26 @@ Member.init(
             allowNull: false,
             validate: {
                 len: [8],
+                isUppercase(value) {
+                    if (!/[A-Z]/.test(value)) {
+                        throw new Error('Password must contain at least one uppercase letter.');
+                    }
+                },
+                isLowercase(value) {
+                    if (!/[a-z]/.test(value)) {
+                        throw new Error('Password must contain at least one lowercase letter.');
+                    }
+                },
+                isNumeric(value) {
+                    if (!/[0-9]/.test(value)) {
+                        throw new Error('Password must contain at least one number.');
+                    }
+                },
+                hasSpecial(value) {
+                    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value)) {
+                        throw new Error('Password must contain at least one special character.');
+                    }
+                }
             },
         },
     },

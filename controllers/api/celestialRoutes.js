@@ -7,7 +7,7 @@ const { processAstrologyAspects } = require('../helpers/processAstrologyAspects'
 const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
 const { calculateZodiacSign } = require('../helpers/calculateZodiacSign');
-const isAuthenticated = require('../../utils/isAuthenticated');
+const isAuthenticatedAPI = require('../../utils/isAuthenticated');
 // const { getInterpretation } = require('../helpers/getInterpretation');
 const { CelestialBodyData, AstrologyAspectData } = require('../../models/index')
 
@@ -60,7 +60,7 @@ function getCellData(cells, bodyId, bodyName) {
 // --------------------------------------------
 // Route for calculating birthchart data & Equal House System
 // --------------------------------------------
-router.post('/calculate', isAuthenticated, (req, res) => {
+router.post('/calculate', isAuthenticatedAPI, (req, res) => {
   const { longitude, latitude, elevation, date, time } = req.body;
   const userId = req.user.id; // Extract the user ID from the session
   const params = {
@@ -175,7 +175,7 @@ router.post('/calculate', isAuthenticated, (req, res) => {
 // --------------------------------------------
 //   Route for calculating the zodiac / sun sign
 // --------------------------------------------
-router.post('/zodiac-sign', (req, res) => {
+router.post('/zodiac-sign', isAuthenticatedAPI, (req, res) => {
   const { date } = req.body;
 
   // Uses the calculateZodiacSign function with the provided 'date'
@@ -190,7 +190,7 @@ router.post('/zodiac-sign', (req, res) => {
 //         Route for calculating aspects
 // --------------------------------------------
 // can only be internal unless it can fetch planet data
-router.get('/astrology-aspects', async (req, res) => {
+router.get('/astrology-aspects', isAuthenticatedAPI, async (req, res) => {
   try {
     const aspectsData = await AstrologyAspectData.findAll();
     res.json(aspectsData);

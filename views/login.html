@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<body>
+    <div class="loginPage">
+        <div class="loginPageColumn">
+            <img src="/public/images/logos/white-lightoftwelve-logo.png" alt="Light of Twelve Logo">
+            <p>WELCOME TO</p>
+            <h1>LIGHT OF TWELVE</h1>
+            <p>ASTROLOGY</p>
+            <button id="loginBtn">SIGN IN</button>
+
+            <!-- Hidden Popup for login -->
+            <div id="loginOverlay" class="overlay">
+                <div class="popup">
+                    <button id="closeButton">
+                        <span>X</span>
+                    </button>
+                    <span>WELCOME BACK</span>
+                    <div class="entryWelcome">
+                        <img src="/public/images/logos/black-lightoftwelve-logo.png" alt="Light of Twelve Logo">
+                    </div>
+                    <form action="/login" method="post">
+                        <input type="text" name="username" placeholder="Username or Email">
+                        <input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="Login">
+                    </form>
+                    <div class="userLoginOptions">
+                        <a href="/register">New User</a>
+                        <a href="/forgot-password">Forgot Password</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/js/loginPopup.js"></script>
+</body>
+
+</html>
