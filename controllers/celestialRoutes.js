@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const isAuthenticatedView = require('../utils/isAuthenticated');
+const { isAuthenticatedView } = require('../utils/isAuthenticated');
 
 // astrology/zodiac-sign
 router.post('/zodiac-sign', isAuthenticatedView, (req, res) => {

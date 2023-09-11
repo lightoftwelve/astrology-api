@@ -1,5 +1,6 @@
 [
     {
+        "user_id": 1,
         "date": "2023-09-09",
         "altitude": 15.5,
         "azimuth": 220.3,
@@ -17,6 +18,7 @@
         "house": 5
     },
     {
+        "user_id": 2,
         "date": "2023-09-09",
         "altitude": 21.3,
         "azimuth": 180.1,
@@ -34,6 +36,7 @@
         "house": 4
     },
     {
+        "user_id": 3,
         "date": "2023-09-09",
         "altitude": 25.7,
         "azimuth": 110.8,
@@ -51,6 +54,7 @@
         "house": 6
     },
     {
+        "user_id": 4,
         "date": "2023-09-09",
         "altitude": 17.8,
         "azimuth": 205.6,
@@ -68,6 +72,7 @@
         "house": 8
     },
     {
+        "user_id": 5,
         "date": "2023-09-09",
         "altitude": 20.2,
         "azimuth": 150.3,

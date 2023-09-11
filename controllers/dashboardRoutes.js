@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const { Member } = require('../models');
-const isAuthenticatedView = require('../utils/isAuthenticated');
+const { isAuthenticatedView } = require('../utils/isAuthenticated');
 
 router.get('/', isAuthenticatedView, async (req, res) => {
     try {
         const memberData = await Member.findAll({
             attributes: { exclude: ['password'] },
-            order: [['name', 'ASC']],
+            order: [['email', 'ASC']],
         });
 
         const members = memberData.map((info) => info.get({ plain: true }));

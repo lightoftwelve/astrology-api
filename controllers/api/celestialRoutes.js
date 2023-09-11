@@ -7,7 +7,7 @@ const { processAstrologyAspects } = require('../helpers/processAstrologyAspects'
 const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
 const { calculateZodiacSign } = require('../helpers/calculateZodiacSign');
-const isAuthenticatedAPI = require('../../utils/isAuthenticated');
+const { isAuthenticatedAPI } = require('../../utils/isAuthenticated');
 // const { getInterpretation } = require('../helpers/getInterpretation');
 const { CelestialBodyData, AstrologyAspectData } = require('../../models/index')
 

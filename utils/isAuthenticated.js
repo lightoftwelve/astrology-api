@@ -14,4 +14,7 @@ const isAuthenticatedAPI = (req, res, next) => {
   }
 };
 
-module.exports = isAuthenticatedView, isAuthenticatedAPI;
+module.exports = {
+  isAuthenticatedView,
+  isAuthenticatedAPI
+};

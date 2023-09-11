@@ -5,7 +5,4 @@ node_modules
 /images
 /public/images
 /views/dashboard.handlebars
-/views/login.handlebars
-/views/layouts/main.handlebars
-/views/index.handlebars
 /public/js/logout.js

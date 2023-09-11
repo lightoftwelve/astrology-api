@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const { check, validationResult } = require('express-validator');
+const { Op } = require("sequelize");
 const { Member } = require('../../models');
 
 // api/members/login
 // router.post('/login', async (req, res) => {
 router.post('/login',
   [
-    check('email').isEmail(),
+    check('identifier', 'Username or Email is required').notEmpty(),
     check('password').isLength({ min: 8 })
   ],
   async (req, res) => {
@@ -15,12 +16,27 @@ router.post('/login',
       return res.status(400).json({ errors: errors.array() });
     }
     try {
-      const memberData = await Member.findOne({ where: { email: req.body.email } });
+      if (!req.body.identifier) {
+        return res.status(400).json({ message: 'Username or Email is required.' });
+      }
+
+      const memberData = await Member.findOne({
+        where: {
+          [Op.or]: [
+            { email: req.body.identifier },
+            { username: req.body.identifier }
+          ]
+        }
+      });
+
+      console.log("User retrieved:", memberData);
       if (!memberData) {
         return res.status(400).json({ message: 'Incorrect username or password combination, please try again' });
       }
 
-      const validPassword = await memberData.checkPassword(req.body.password);
+      const validPassword = await memberData.validatePassword(req.body.password);
+
+      console.log("Password valid:", validPassword);
       if (!validPassword) {
         return res.status(400).json({ message: 'Incorrect username or password combination, please try again' });
       }
@@ -33,7 +49,8 @@ router.post('/login',
       });
 
     } catch (err) {
-      return res.status(400).json(err);
+      console.error(err);
+      return res.status(400).json({ message: 'Login failed. Please try again later.' });
     }
   });
 
@@ -71,11 +88,21 @@ router.post('/register',
       return res.status(400).json({ errors: errors.array() });
     }
 
-    Member.bulkCreate(memberData)
+    try {
+      const member = await Member.create(req.body);
 
-    res.status(200).json({ message: 'User registered successfully!' });
-  }
-);
+      // Start session after registering
+      req.session.save(() => {
+        req.session.member_id = member.id;
+        req.session.logged_in = true;
+
+        return res.json({ user: member, message: 'User registered and logged in successfully!' });
+      });
+
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
 
 // api/members/logout
 router.post('/logout', (req, res) => {

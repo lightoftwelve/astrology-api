@@ -1,32 +1,37 @@
 [
     {
+        "username": "duchessv",
         "first_name": "Duchess",
         "last_name": "Vulcano",
         "email": "d.vul@hotmail.com",
-        "password": "password199"
+        "password": "Password199!"
     },
     {
+        "username": "marvins",
         "first_name": "Marvin",
         "last_name": "Stewart",
         "email": "marvs@hotmail.com",
-        "password": "password92"
+        "password": "PasSword92!"
     },
     {
+        "username": "luckyt",
         "first_name": "Lucky",
         "last_name": "Turtle",
         "email": "tanktheturtle@yahoo.com",
-        "password": "password65"
+        "password": "passwOrd65!"
     },
     {
+        "username": "smileyt",
         "first_name": "Smiley",
         "last_name": "Toothpaste",
         "email": "biggrin@aol.com",
-        "password": "password96"
+        "password": "paSsword96!"
     },
     {
+        "username": "saladd",
         "first_name": "Salad",
         "last_name": "Dressing",
         "email": "frenchdressing@gmail.com",
-        "password": "password82"
+        "password": "passwoRd82!"
     }
 ]

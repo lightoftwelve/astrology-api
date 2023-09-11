@@ -1,0 +1,50 @@
+<div class="loginPage">
+    <div class="loginPageColumn">
+        <img src="/images/logos/white-lightoftwelve-logo.png" alt="Light of Twelve Logo">
+        <p>WELCOME TO</p>
+        <h1>LIGHT OF TWELVE</h1>
+        <p>ASTROLOGY</p>
+        <button id="loginBtn">SIGN IN</button>
+
+        <!-- Hidden Popup for login -->
+        <div id="loginOverlay" class="overlay">
+            <div class="popup">
+                <button id="closeButton">
+                    <span>X</span>
+                </button>
+                <span>WELCOME BACK</span>
+                <div class="entryWelcome">
+                    <img src="/images/logos/black-lightoftwelve-logo.png" alt="Light of Twelve Logo">
+                </div>
+                <form action="/api/members/login" method="post">
+                    <input type="text" name="identifier" placeholder="Username or Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" id="buttonLogin" value="Login">
+                </form>
+                <div class="userLoginOptions">
+                    <a id="newUserLink" style="cursor: pointer;">New User</a>
+                    <a href="/forgot-password">Forgot Password</a>
+                </div>
+            </div>
+        </div>
+        <!-- Hidden Popup for registration -->
+        <div id="registerOverlay" class="overlay">
+            <div class="popup">
+                <button id="closeRegisterButton">
+                    <span>X</span>
+                </button>
+                <span>REGISTER</span>
+                <form action="/api/members/register" method="post">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="text" name="first_name" placeholder="First Name">
+                    <input type="text" name="last_name" placeholder="Last Name">
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Password">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/loginPopup.js"></script>
