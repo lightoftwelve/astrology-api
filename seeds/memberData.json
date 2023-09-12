@@ -4,34 +4,47 @@
         "first_name": "Duchess",
         "last_name": "Vulcano",
         "email": "d.vul@hotmail.com",
-        "password": "Password199!"
+        "password": "Password199!",
+        "zodiac_sun_sign": "Gemini"
+    },
+    {
+        "username": "tester",
+        "first_name": "Testing",
+        "last_name": "Yay",
+        "email": "test@hotmail.com",
+        "password": "Testing123!",
+        "zodiac_sun_sign": "Pisces"
     },
     {
         "username": "marvins",
         "first_name": "Marvin",
         "last_name": "Stewart",
         "email": "marvs@hotmail.com",
-        "password": "PasSword92!"
+        "password": "PasSword92!",
+        "zodiac_sun_sign": "Pisces"
     },
     {
         "username": "luckyt",
         "first_name": "Lucky",
         "last_name": "Turtle",
         "email": "tanktheturtle@yahoo.com",
-        "password": "passwOrd65!"
+        "password": "passwOrd65!",
+        "zodiac_sun_sign": "Aquarius"
     },
     {
         "username": "smileyt",
         "first_name": "Smiley",
         "last_name": "Toothpaste",
         "email": "biggrin@aol.com",
-        "password": "paSsword96!"
+        "password": "paSsword96!",
+        "zodiac_sun_sign": "Sagittarius"
     },
     {
         "username": "saladd",
         "first_name": "Salad",
         "last_name": "Dressing",
         "email": "frenchdressing@gmail.com",
-        "password": "passwoRd82!"
+        "password": "passwoRd82!",
+        "zodiac_sun_sign": "Leo"
     }
 ]

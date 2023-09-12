@@ -26,8 +26,6 @@ CelestialBodyData.init(
         body_id: {
             type: DataTypes.STRING,
             allowNull: false,
-            // Added an index to the body_id column to correct error
-            unique: true,
         },
         body_name: {
             type: DataTypes.STRING,
@@ -79,7 +77,7 @@ CelestialBodyData.init(
         },
         house: {
             type: DataTypes.INTEGER,
-            allowNull: false,
+            allowNull: true,
         },
     },
     {
@@ -88,6 +86,13 @@ CelestialBodyData.init(
         freezeTableName: true,
         underscored: true,
         modelName: 'celestial_body_data',
+
+        indexes: [
+            {
+                unique: true,
+                fields: ['user_id', 'body_id']
+            }
+        ],
     }
 );
 

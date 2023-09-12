@@ -33,9 +33,9 @@ function processAstrologyAspects(celestialBodiesInfo) {
   }
 
   // Insert aspects into database | properly working
-  AstrologyAspectData.bulkCreate(aspectsToInsert)
-    .then(data => console.log('Aspects saved successfully:', data))
-    .catch(error => console.error('Error saving aspect data:', error));
+  // AstrologyAspectData.bulkCreate(aspectsToInsert)
+  //   .then(data => console.log('Aspects saved successfully:', data))
+  //   .catch(error => console.error('Error saving aspect data:', error));
 }
 
 module.exports = { processAstrologyAspects };

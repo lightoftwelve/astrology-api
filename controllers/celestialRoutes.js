@@ -1,15 +1,18 @@
 const router = require('express').Router();
+const { calculateZodiacSign } = require('./helpers/calculateZodiacSign');
+const { ZodiacSignData } = require('../models/ZodiacSignData');
 const { isAuthenticatedView } = require('../utils/isAuthenticated');
 
 // astrology/zodiac-sign
-router.post('/zodiac-sign', isAuthenticatedView, (req, res) => {
+router.post('/zodiac-sign', async (req, res) => {
   try {
     console.log('Accessed /zodiac-sign route');
     const { date } = req.body;
     const zodiacSign = calculateZodiacSign(date);
 
-    // Find the corresponding zodiac sign data
-    const zodiacSignData = zodiacData.find(item => item.sign === zodiacSign);
+    // Fetch the zodiac sign details from the database
+    const zodiacSignDataInstance = await ZodiacSignData.findOne({ where: { sign: zodiacSign } });
+    const zodiacSignData = zodiacSignDataInstance.get({ plain: true });
 
     res.json({ zodiacSignData });
   } catch (error) {

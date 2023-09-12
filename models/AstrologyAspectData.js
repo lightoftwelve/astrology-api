@@ -31,6 +31,14 @@ AstrologyAspectData.init(
             type: DataTypes.STRING,
             allowNull: true,
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'member',
+                key: 'id',
+            },
+        },
     },
     {
         sequelize,

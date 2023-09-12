@@ -60,9 +60,18 @@ function getCellData(cells, bodyId, bodyName) {
 // --------------------------------------------
 // Route for calculating birthchart data & Equal House System
 // --------------------------------------------
+// api/celestial-routes/calculate
 router.post('/calculate', isAuthenticatedAPI, (req, res) => {
   const { longitude, latitude, elevation, date, time } = req.body;
-  const userId = req.user.id; // Extract the user ID from the session
+
+  console.log(req.session.member_id);
+
+  if (!req.session.member_id) {
+    res.status(401).json({ error: 'UnAuthorized Access!' });
+  }
+
+  const userId = req.session.member_id; // Extract the user ID from the session
+
   const params = {
     longitude,
     latitude,
@@ -71,6 +80,7 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
     to_date: date,
     time
   };
+  console.log(params);
 
   axios.get(ASTRONOMY_API_URL, { params, headers })
     .then(response => {
@@ -97,13 +107,17 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
       // Map rows | EX: { entry: { id: 'sun', name: 'Sun' }, cells: [ [Object] ] },
       const celestialBodiesInfo = rows.map(row => {
         const entry = row.entry;
-
         const bodyId = entry.id; // planet
         const bodyName = entry.name; // Planet Name
         const cells = row.cells; // Object per planet
 
         // Extract cell data for each celestial body
         const cellData = getCellData(cells, bodyId, bodyName);
+
+        if (!cellData || !cellData.azimuth) {
+          console.error('Error fetching data for', bodyId);
+          throw new Error('Error fetching data');
+        }
 
         return {
           id: bodyId,
@@ -114,7 +128,7 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
 
       // Log detailed information for each celestial body
       celestialBodiesInfo.forEach(body => {
-        console.log(`Celestial Body: ${body.name}`);
+        // console.log(`Celestial Body: ${body.name}`);
         const body_id = body.id;
         const body_name = body.name;
         body.body_id = body_id;
@@ -128,10 +142,11 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
       const sunData = celestialBodiesInfo.find(body => body.name === 'Sun');
       const decOfSun = sunData.cellData.declination;
       const raOfSun = sunData.cellData.rightAscension;
-      console.log('Sun Data, Dec of Sun & Ra of Sun: returns normally', sunData, decOfSun, raOfSun);
 
       //Calculate Local Sidereal Time
-      const LST = calculateLST(longitude, new Date());
+      const { from_date, time } = params;
+      const LST = calculateLST(longitude, from_date, time);
+      // const LST = calculateLST(longitude, new Date());
       console.log('Local Sidereal Time:', LST);
 
       // Calculate Ascendant (Currently gives back numeric value)
@@ -149,25 +164,27 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
       });
 
       // Transform data for insertion
-      const celestialBodyDataToInsert = celestialBodiesInfo.flatMap(body => ({ ...body.cellData, body_id: body.body_id, body_name: body.body_name, user_id: userId }));
+      const celestialBodyDataToInsert = celestialBodiesInfo.flatMap(body => ({ user_id: userId, ...body.cellData, body_id: body.body_id, body_name: body.body_name }));
 
-      // const interpretations = {};
-      console.log(celestialBodyDataToInsert);
-
-      CelestialBodyData.bulkCreate(celestialBodyDataToInsert) // returningn fine
-      // .then(data => console.log('Data saved successfully:', data))
-      // .catch(error => console.error('Error saving data:', error));
-
-      res.json({
-        LST,
-        ascendant,
-        houseCusps,
-        celestialBodiesInfo,
-      });
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-      res.status(500).json({ error: 'Error fetching data' });
+      // Try to delete existing data for this user (if it exists)
+      CelestialBodyData.destroy({ where: { user_id: userId } })
+        .then(() => {
+          // Insert the new data (whether old data existed or not)
+          return CelestialBodyData.bulkCreate(celestialBodyDataToInsert);
+        })
+        .then(data => {
+          console.log('Data saved successfully');
+          res.json({
+            LST,
+            ascendant,
+            houseCusps,
+            celestialBodiesInfo,
+          });
+        })
+        .catch(error => {
+          console.error('Error saving data:', error);
+          res.status(500).json({ error: 'Error saving data' });
+        });
     });
 });
 
@@ -175,11 +192,20 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
 // --------------------------------------------
 //   Route for calculating the zodiac / sun sign
 // --------------------------------------------
-router.post('/zodiac-sign', isAuthenticatedAPI, (req, res) => {
+// api/celestial-routes/zodiac-sign
+router.post('/zodiac-sign', async (req, res) => {
   const { date } = req.body;
-
-  // Uses the calculateZodiacSign function with the provided 'date'
   const zodiacSign = calculateZodiacSign(date);
+
+  // Save the zodiac sign to the user's profile
+  const memberData = await Member.update(
+    { zodiac_sun_sign: zodiacSign },
+    { where: { id: req.session.user_id } }
+  );
+
+  if (!memberData) {
+    return res.status(500).json({ error: 'Failed to save zodiac sign' });
+  }
 
   res.json({
     zodiacSign
@@ -190,7 +216,7 @@ router.post('/zodiac-sign', isAuthenticatedAPI, (req, res) => {
 //         Route for calculating aspects
 // --------------------------------------------
 // can only be internal unless it can fetch planet data
-router.get('/astrology-aspects', isAuthenticatedAPI, async (req, res) => {
+router.get('/astrology-aspects', async (req, res) => {
   try {
     const aspectsData = await AstrologyAspectData.findAll();
     res.json(aspectsData);

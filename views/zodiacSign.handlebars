@@ -1,33 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<h1>Zodiac Sign Calculator</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zodiac Sign Calculator</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-</head>
+<form>
+    <input type="text" id="birthdate" placeholder="Select your birthdate">
+    <button id="calculateButton">Calculate Zodiac Sign</button>
+    <div id="result"></div>
+</form>
 
-<body>
-    <h1>Zodiac Sign Calculator</h1>
+{{#if zodiacSignData}}
+<h2>{{zodiacSignData.sign}}</h2>
+<img src="{{zodiacSignData.imageUrl}}" alt="{{zodiacSignData.sign}}">
+<p>Dates: {{zodiacSignData.dates}}</p>
+<p>Description: {{zodiacSignData.sign_meaning}}</p>
+{{/if}}
 
-    <form>
-        <input type="text" id="birthdate" placeholder="Select your birthdate">
-        <button id="calculateButton">Calculate Zodiac Sign</button>
-        <div id="result"></div>
-    </form>
-
-    {{#if zodiacSignData}}
-    <h2>{{zodiacSignData.sign}}</h2>
-    <img src="{{zodiacSignData.imageUrl}}" alt="{{zodiacSignData.sign}}">
-    <p>Dates: {{zodiacSignData.dates}}</p>
-    <p>Description: {{zodiacSignData.sign_meaning}}</p>
-    {{/if}}
-
-    {{footer}}
-</body>
 <script src="/js/zodiacSign.js"></script>
-
-</html>

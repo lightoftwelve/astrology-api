@@ -18,7 +18,7 @@ $(document).ready(function () {
         })
             .then(response => response.json())
             .then(data => {
-                $("#result").html("Your zodiac sign is " + data.zodiacSign);
+                $("#result").html("Your zodiac sign is " + data.zodiacSignData.sign);
             })
             .catch(error => {
                 console.error('Error:', error);

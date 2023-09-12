@@ -64,6 +64,10 @@ Member.init(
                 }
             },
         },
+        zodiac_sun_sign: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        }
     },
     {
         hooks: {
