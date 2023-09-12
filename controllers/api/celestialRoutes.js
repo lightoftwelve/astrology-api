@@ -8,7 +8,7 @@ const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
 const { calculateZodiacSign } = require('../helpers/calculateZodiacSign');
 const { isAuthenticatedAPI } = require('../../utils/isAuthenticated');
-const { CelestialBodyData, AstrologyAspectData, AstrologyHouseData } = require('../../models/index')
+const { CelestialBodyData, AstrologyAspectData, AstrologyHouseData, Member } = require('../../models/index')
 // const { getInterpretation } = require('../helpers/getInterpretation');
 
 // --------------------------------------------
@@ -380,65 +380,29 @@ router.post('/astrology-aspects', isAuthenticatedAPI, async (req, res) => {
 // --------------------------------------------
 //   Route for calculating the zodiac / sun sign
 // --------------------------------------------
-// api/celestial-routes/sun-sign
-router.post('/sun-sign', isAuthenticatedAPI, async (req, res) => {
-  const { date } = req.body;
-  const zodiacSign = calculateZodiacSign(date);
+// api/celestial-routes/zodiac-sign
+router.post('/zodiac-sign', isAuthenticatedAPI, async (req, res) => {
+  const userId = req.session.member_id;
 
-  // Save the zodiac sign to the user's profile
-  const memberData = await Member.update(
-    { zodiac_sun_sign: zodiacSign },
-    { where: { id: req.session.user_id } }
-  );
-
-  if (!memberData) {
-    return res.status(500).json({ error: 'Failed to save zodiac sign' });
-  }
-
-  res.json({
-    zodiacSign
-  });
-});
-
-// --------------------------------------------
-//         Route for calculating aspects
-// --------------------------------------------
-// can only be internal unless it can fetch planet data
-router.get('/astrology-aspects', async (req, res) => {
   try {
-    const aspectsData = await AstrologyAspectData.findAll();
-    res.json(aspectsData);
-  } catch (err) {
-    res.status(500).json({ message: "Server error", error: err });
+    const { date } = req.body;
+    const zodiacSign = calculateZodiacSign(date);
+
+    const memberData = await Member.update(
+      { zodiac_sun_sign: zodiacSign },
+      { where: { id: userId } }
+    );
+
+    if (!memberData[0] === 0) {  // Sequelize's update method returns an array where the first element indicates the number of records updated
+      return res.status(404).json({ error: 'No user found with this id' });
+    }
+
+    res.json({ zodiacSign });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server Error' });
   }
 });
-
-// --------------------------------------------
-//   Route for viewing celestialbodydata with associated astrologyaspectdata
-// --------------------------------------------
-// router.get('/celestial-with-aspects', async (req, res) => {
-//   try {
-//     const data = await CelestialBodyData.findAll({
-//       include: [
-//         {
-//           model: AstrologyAspectData,
-//           as: 'aspects_1'
-//         },
-//         {
-//           model: AstrologyAspectData,
-//           as: 'aspects_2'
-//         }
-//       ]
-//     });
-
-//     res.json(data);
-//   } catch (error) {
-//     res.status(500).json({
-//       message: "Server error",
-//       error: error
-//     });
-//   }
-// });
 
 module.exports = router;
 

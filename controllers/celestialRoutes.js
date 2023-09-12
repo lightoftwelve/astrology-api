@@ -4,20 +4,36 @@ const { ZodiacSignData } = require('../models/ZodiacSignData');
 const { isAuthenticatedView } = require('../utils/isAuthenticated');
 
 // astrology/zodiac-sign
-router.post('/zodiac-sign', async (req, res) => {
+router.get('/zodiac-sign', async (req, res) => {
   try {
     console.log('Accessed /zodiac-sign route');
-    const { date } = req.body;
-    const zodiacSign = calculateZodiacSign(date);
+
+    // Fetch user's saved zodiac sign
+    const userDataInstance = await Member.findOne({ where: { id: req.session.user_id }, attributes: ['zodiac_sun_sign'] });
+    const { zodiac_sun_sign } = userDataInstance.get({ plain: true });
 
     // Fetch the zodiac sign details from the database
-    const zodiacSignDataInstance = await ZodiacSignData.findOne({ where: { sign: zodiacSign } });
+    const zodiacSignDataInstance = await ZodiacSignData.findOne({ where: { sign: zodiac_sun_sign } });
     const zodiacSignData = zodiacSignDataInstance.get({ plain: true });
 
-    res.json({ zodiacSignData });
+    res.render('zodiacSign', { zodiacSignData });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Error fetching celestial data' });
+  }
+});
+
+
+// --------------------------------------------
+//         Route for calculating aspects
+// --------------------------------------------
+// can only be internal unless it can fetch planet data
+router.get('/astrology-aspects', async (req, res) => {
+  try {
+    const aspectsData = await AstrologyAspectData.findAll();
+    res.json(aspectsData);
+  } catch (err) {
+    res.status(500).json({ message: "Server error", error: err });
   }
 });
 
