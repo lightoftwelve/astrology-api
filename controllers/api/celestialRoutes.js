@@ -8,8 +8,8 @@ const { calculateHouse } = require('../helpers/calculateHouse');
 const { calculateHouseCusps } = require('../helpers/calculateHouseCusps');
 const { calculateZodiacSign } = require('../helpers/calculateZodiacSign');
 const { isAuthenticatedAPI } = require('../../utils/isAuthenticated');
+const { CelestialBodyData, AstrologyAspectData, AstrologyHouseData } = require('../../models/index')
 // const { getInterpretation } = require('../helpers/getInterpretation');
-const { CelestialBodyData, AstrologyAspectData } = require('../../models/index')
 
 // --------------------------------------------
 //     Connection to AstromonyAPI (astronomyapi.com)
@@ -58,7 +58,8 @@ function getCellData(cells, bodyId, bodyName) {
 }
 
 // --------------------------------------------
-// Route for calculating birthchart data & Equal House System
+//            EQUAL HOUSE SYSTEM
+//     For generating full birthchart
 // --------------------------------------------
 // api/celestial-routes/calculate
 router.post('/calculate', isAuthenticatedAPI, (req, res) => {
@@ -82,24 +83,24 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
   };
   console.log(params);
 
-  axios.get(ASTRONOMY_API_URL, { params, headers })
+  axios.get(ASTRONOMY_API_URL, { params, headers }) // axios to make http requests from node
     .then(response => {
       const data = response.data.data;
-      console.log("Raw API Response:", response.data);
+      // console.log("Raw API Response:", response.data);
 
       // Extract and log dates
-      const fromDate = data.dates.from;
-      console.log('From Date:', fromDate);
-      const toDate = data.dates.to;
-      console.log('To Date:', toDate);
+      // const fromDate = data.dates.from;
+      // console.log('From Date:', fromDate);
+      // const toDate = data.dates.to;
+      // console.log('To Date:', toDate);
 
-      // Extract and log observer location (Long, Lat & Elevation)
-      const observerLocation = data.observer.location;
-      console.log('Observer Location:', observerLocation);
+      // // Extract and log observer location (Long, Lat & Elevation)
+      // const observerLocation = data.observer.location;
+      // console.log('Observer Location:', observerLocation);
 
-      // Extract and log header elements (Birthdate, Time, ?)
-      const header = data.table.header;
-      console.log('Header:', header);
+      // // Extract and log header elements (Birthdate, Time, ?)
+      // const header = data.table.header;
+      // console.log('Header:', header);
 
       // Extract and log rows of position data
       const rows = data.table.rows;
@@ -111,8 +112,7 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
         const bodyName = entry.name; // Planet Name
         const cells = row.cells; // Object per planet
 
-        // Extract cell data for each celestial body
-        const cellData = getCellData(cells, bodyId, bodyName);
+        const cellData = getCellData(cells, bodyId, bodyName); // Extract cell data for each celestial body
 
         if (!cellData || !cellData.azimuth) {
           console.error('Error fetching data for', bodyId);
@@ -128,7 +128,6 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
 
       // Log detailed information for each celestial body
       celestialBodiesInfo.forEach(body => {
-        // console.log(`Celestial Body: ${body.name}`);
         const body_id = body.id;
         const body_name = body.name;
         body.body_id = body_id;
@@ -137,9 +136,7 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
 
       // Processing Aspects
       const astrologyAspects = processAstrologyAspects(celestialBodiesInfo) || [];
-      // console.log(astrologyAspects);
       const validAstrologyAspects = astrologyAspects.filter(aspect => aspect !== null);
-
 
       // Declination and Right Ascension of Sun
       const sunData = celestialBodiesInfo.find(body => body.name === 'Sun');
@@ -149,17 +146,13 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
       //Calculate Local Sidereal Time
       const { from_date, time } = params;
       const LST = calculateLST(longitude, from_date, time);
-      // const LST = calculateLST(longitude, new Date());
-      console.log('Local Sidereal Time:', LST);
 
       // Calculate Ascendant (Currently gives back numeric value)
       // TODO: Translate ascendant into constellation sign
       const ascendant = calculateAscendant(LST, latitude, decOfSun, raOfSun);
-      console.log('Ascendant:', ascendant);
 
       // Calculate House Cusps (Check if its working | Equal House System)
       const houseCusps = calculateHouseCusps(ascendant);
-      console.log('House Cusps:', houseCusps);
 
       // Calculate House
       celestialBodiesInfo.forEach(body => {
@@ -205,10 +198,190 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
 });
 
 // --------------------------------------------
+//              GET CELESTIAL DATA
+// --------------------------------------------
+// api/celestial-routes/celestial-data
+router.post('/celestial-data', isAuthenticatedAPI, async (req, res) => {
+  const { longitude, latitude, elevation, date, time } = req.body;
+  const userId = req.session.member_id;
+
+  if (!longitude || !latitude || !date || !time) {
+    return res.status(400).json({ error: 'Required parameters are missing.' });
+  }
+
+  try {
+    const celestialBodiesInfo = await getCelestialData(longitude, latitude, date, time, elevation);
+
+    // Saving celestial data to the database
+    await CelestialBodyData.destroy({ where: { user_id: userId } });
+    await CelestialBodyData.bulkCreate(celestialBodiesInfo.map(body => ({ user_id: userId, body_id: body.id, body_name: body.name, ...body.cellData })));
+
+    res.json(celestialBodiesInfo);
+    console.log(celestialBodiesInfo)
+  } catch (error) {
+    console.error('Error fetching celestial data:', error);
+    res.status(500).json({ error: 'Error fetching celestial data' });
+  }
+});
+
+// --------------------------------------------
+//          EXTRACT CELESTIAL DATA
+// --------------------------------------------
+async function getCelestialData(longitude, latitude, date, time, elevation) {
+  const params = {
+    longitude,
+    latitude,
+    elevation,
+    from_date: date,
+    to_date: date,
+    time
+  };
+
+  try {
+    const response = await axios.get(ASTRONOMY_API_URL, { params, headers });
+    const data = response.data.data;
+
+    const rows = data.table.rows;
+
+    return rows.map(row => {
+      const entry = row.entry;
+      const bodyId = entry.id;
+      const bodyName = entry.name;
+      const cells = row.cells;
+
+      console.log('Entry for body:', entry);
+
+      const cellData = getCellData(cells, bodyId, bodyName);
+      if (!cellData || !cellData.azimuth) {
+        console.error('Error fetching data for', bodyId);
+        throw new Error('Error fetching data');
+      }
+
+      return {
+        id: bodyId,
+        name: bodyName,
+        cellData: cellData
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching celestial data:', error);
+    throw new Error('Error fetching celestial data');
+  }
+}
+
+// --------------------------------------------
+//            ASCENDANT & HOUSES
+// --------------------------------------------
+// api/celestial-routes/astrology-houses
+router.post('/astrology-houses', isAuthenticatedAPI, async (req, res) => {
+  const { longitude, latitude, elevation, date, time } = req.body;
+  const userId = req.session.member_id;
+
+  if (!longitude || !latitude || !date || !time) {
+    return res.status(400).json({ error: 'Required parameters are missing.' });
+  }
+
+  try {
+    // Fetch celestial data
+    const celestialData = await getCelestialData(longitude, latitude, date, time, elevation);
+
+    // Get declination and right ascension of Sun
+    const sunData = celestialData.find(body => body.name === 'Sun');
+    const decOfSun = sunData.cellData.declination;
+    const raOfSun = sunData.cellData.rightAscension;
+
+    // Calculate Local Sidereal Time
+    const LST = calculateLST(longitude, date, time);
+
+    // Calculate Ascendant
+    const ascendant = calculateAscendant(LST, latitude, decOfSun, raOfSun);
+
+    // Calculate House Cusps
+    const houseCusps = calculateHouseCusps(ascendant);
+
+    // Calculate Houses
+    celestialData.forEach(body => {
+      body.cellData.house = calculateHouse(body.cellData.azimuth, houseCusps);
+    });
+
+    const planetAndHouseArray = celestialData
+      .filter(body => body.cellData.bodyName !== "Earth") // Filtering out Earth
+      .map(body => ({
+        bodyName: body.cellData.bodyName,
+        house: body.cellData.house
+      }));
+
+    // Remove users old info and reinsert
+    // await CelestialBodyData.destroy({ where: { user_id: userId } });
+    // await CelestialBodyData.bulkCreate(celestialData.flatMap(body => ({ user_id: userId, ...body.cellData, body_id: body.id, body_name: body.name })));
+
+    await AstrologyHouseData.destroy({ where: { user_id: userId } });
+
+    // Save celestial body's astrology house data
+    for (let body of celestialData) {
+      await AstrologyHouseData.upsert({
+        user_id: userId,
+        LST,
+        ascendant,
+        house_cusps: JSON.stringify(houseCusps),
+        house: body.cellData.house,
+        bodyName: body.cellData.bodyName,
+      });
+    }
+
+    res.json({
+      LST,
+      ascendant,
+      houseCusps,
+      planetAndHouseArray
+    });
+
+  } catch (error) {
+    console.error('Error fetching astrological info:', error);
+    res.status(500).json({ error: 'Error fetching astrological info' });
+  }
+});
+
+// --------------------------------------------
+//                ASPECTS
+// --------------------------------------------
+// api/celestial-routes/astrology-aspects
+router.post('/astrology-aspects', isAuthenticatedAPI, async (req, res) => {
+  const { longitude, latitude, elevation, date, time } = req.body;
+  const userId = req.session.member_id;
+
+  if (!longitude || !latitude || !date || !time) {
+    return res.status(400).json({ error: 'Required parameters are missing.' });
+  }
+
+  try {
+    const celestialBodiesInfo = await getCelestialData(longitude, latitude, date, time, elevation);
+
+    const astrologyAspects = processAstrologyAspects(celestialBodiesInfo) || []; // Calculating aspects
+
+    const validAstrologyAspects = astrologyAspects.filter(aspect => aspect !== null); // Filter out invalid aspects
+
+    // Loop through the valid astrology aspects and use upsert
+    for (let aspect of validAstrologyAspects) {
+      await AstrologyAspectData.upsert({
+        user_id: userId,
+        ...aspect
+      });
+    }
+    console.log(validAstrologyAspects);
+    res.json({ validAstrologyAspects }); // Return the valid aspects
+
+  } catch (error) {
+    console.error('Error processing astrology aspects:', error);
+    res.status(500).json({ error: 'Error processing astrology aspects' });
+  }
+});
+
+// --------------------------------------------
 //   Route for calculating the zodiac / sun sign
 // --------------------------------------------
-// api/celestial-routes/zodiac-sign
-router.post('/zodiac-sign', async (req, res) => {
+// api/celestial-routes/sun-sign
+router.post('/sun-sign', isAuthenticatedAPI, async (req, res) => {
   const { date } = req.body;
   const zodiacSign = calculateZodiacSign(date);
 

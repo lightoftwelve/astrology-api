@@ -90,7 +90,7 @@ CelestialBodyData.init(
         indexes: [
             {
                 unique: true,
-                fields: ['user_id', 'body_id']
+                fields: ['user_id', 'body_id', 'date']
             }
         ],
     }
