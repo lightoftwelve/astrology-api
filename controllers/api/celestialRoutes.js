@@ -136,7 +136,10 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
       });
 
       // Processing Aspects
-      const astrologyAspects = processAstrologyAspects(celestialBodiesInfo);
+      const astrologyAspects = processAstrologyAspects(celestialBodiesInfo) || [];
+      // console.log(astrologyAspects);
+      const validAstrologyAspects = astrologyAspects.filter(aspect => aspect !== null);
+
 
       // Declination and Right Ascension of Sun
       const sunData = celestialBodiesInfo.find(body => body.name === 'Sun');
@@ -164,7 +167,7 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
       });
 
       // Transform data for insertion
-      const celestialBodyDataToInsert = celestialBodiesInfo.flatMap(body => ({ user_id: userId, ...body.cellData, body_id: body.body_id, body_name: body.body_name }));
+      const celestialBodyDataToInsert = celestialBodiesInfo.flatMap(body => ({ user_id: userId, ...body.cellData, body_id: body.body_id, body_name: body.body_name, validAstrologyAspects }));
 
       // Try to delete existing data for this user (if it exists)
       CelestialBodyData.destroy({ where: { user_id: userId } })
@@ -172,13 +175,26 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
           // Insert the new data (whether old data existed or not)
           return CelestialBodyData.bulkCreate(celestialBodyDataToInsert);
         })
+        .then(() => {
+          // Delete old aspects for the user
+          return AstrologyAspectData.destroy({ where: { user_id: userId } });
+        })
+        .then(() => {
+          // Save the valid astrology aspects
+          const aspectsToInsert = processAstrologyAspects(celestialBodiesInfo) || [];
+          console.log(aspectsToInsert);
+
+          const validAstrologyAspects = aspectsToInsert.filter(aspect => aspect !== null);
+          return AstrologyAspectData.bulkCreate(validAstrologyAspects.map(aspect => ({ user_id: userId, ...aspect })));
+        })
         .then(data => {
-          console.log('Data saved successfully');
+          console.log('Data and aspects saved successfully');
           res.json({
             LST,
             ascendant,
             houseCusps,
             celestialBodiesInfo,
+            validAstrologyAspects
           });
         })
         .catch(error => {
@@ -187,7 +203,6 @@ router.post('/calculate', isAuthenticatedAPI, (req, res) => {
         });
     });
 });
-
 
 // --------------------------------------------
 //   Route for calculating the zodiac / sun sign

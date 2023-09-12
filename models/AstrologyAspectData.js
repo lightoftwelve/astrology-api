@@ -46,6 +46,13 @@ AstrologyAspectData.init(
         freezeTableName: true,
         underscored: true,
         modelName: 'astrology_aspect_data',
+
+        indexes: [
+            {
+                unique: true,
+                fields: ['user_id', 'body_id_1', 'body_id_2']
+            }
+        ]
     }
 );
 

@@ -1,6 +1,5 @@
 const { calculateAngularSeparation } = require('./calculateAngularSeparation');
 const { getClosestAspect } = require('./getClosestAspect');
-const AstrologyAspectData = require('../../models/AstrologyAspectData');
 
 // Calculate Astrology Aspects
 function processAstrologyAspects(celestialBodiesInfo) {
@@ -20,22 +19,20 @@ function processAstrologyAspects(celestialBodiesInfo) {
       // Calculate Closest Aspect
       const aspect = getClosestAspect(angularSeparation);
 
-      console.log(`Aspect between ${body1.name} and ${body2.name}: ${aspect}`);
+      // console.log(`Aspect between ${body1.name} and ${body2.name}: ${aspect}`);
 
-      aspectsToInsert.push({
-        body_id_1: body1.id,
-        body_name_1: body1.name,
-        body_id_2: body2.id,
-        body_name_2: body2.name,
-        aspect
-      });
+      if (aspect !== null) {
+        aspectsToInsert.push({
+          body_id_1: body1.id,
+          body_name_1: body1.name,
+          body_id_2: body2.id,
+          body_name_2: body2.name,
+          aspect
+        });
+      }
     }
   }
-
-  // Insert aspects into database | properly working
-  // AstrologyAspectData.bulkCreate(aspectsToInsert)
-  //   .then(data => console.log('Aspects saved successfully:', data))
-  //   .catch(error => console.error('Error saving aspect data:', error));
+  return aspectsToInsert;
 }
 
 module.exports = { processAstrologyAspects };

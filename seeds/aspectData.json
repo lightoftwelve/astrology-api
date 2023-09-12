@@ -1,5 +1,6 @@
 [
     {
+        "user_id": 1,
         "body_id_1": "sun",
         "body_name_1": "Sun",
         "body_id_2": "moon",
@@ -7,6 +8,7 @@
         "aspect": "Conjunction"
     },
     {
+        "user_id": 2,
         "body_id_1": "venus",
         "body_name_1": "Venus",
         "body_id_2": "mars",
@@ -14,6 +16,7 @@
         "aspect": "Opposition"
     },
     {
+        "user_id": 3,
         "body_id_1": "mercury",
         "body_name_1": "Mercury",
         "body_id_2": "jupiter",
@@ -21,6 +24,7 @@
         "aspect": "Trine"
     },
     {
+        "user_id": 4,
         "body_id_1": "saturn",
         "body_name_1": "Saturn",
         "body_id_2": "jupiter",
@@ -28,6 +32,7 @@
         "aspect": "Sextile"
     },
     {
+        "user_id": 5,
         "body_id_1": "neptune",
         "body_name_1": "Neptune",
         "body_id_2": "pluto",
