@@ -10,6 +10,11 @@ function processAstrologyAspects(celestialBodiesInfo) {
       const body1 = celestialBodiesInfo[i];
       const body2 = celestialBodiesInfo[j];
 
+      // Skip if either body is named "Earth"
+      if (body1.name === 'Earth' || body2.name === 'Earth') {
+        continue;
+      }
+
       const ra1 = body1.cellData.rightAscension;
       const dec1 = body1.cellData.declination;
       const ra2 = body2.cellData.rightAscension;
@@ -19,7 +24,7 @@ function processAstrologyAspects(celestialBodiesInfo) {
       // Calculate Closest Aspect
       const aspect = getClosestAspect(angularSeparation);
 
-      // console.log(`Aspect between ${body1.name} and ${body2.name}: ${aspect}`);
+      console.log(`Aspect between ${body1.name} and ${body2.name}: ${aspect}`);
 
       if (aspect !== null) {
         aspectsToInsert.push({

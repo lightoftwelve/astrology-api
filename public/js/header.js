@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const loginLinks = document.querySelector('.sign-in');
 
     const signInButton = document.querySelector('#signInButton');
-    const signInText = document.querySelector('#signInText');
+    const signOutButton = document.querySelector('#signOutButton');
 
     // Function to handle screen size change
     function handleScreenSize() {
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     };
 
-    // Function to check if the user is logged in and changes the button accordingly
     const checkLoggedIn = async () => {
         try {
             const response = await fetch('/api/members/status');
@@ -50,11 +49,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     };
 
-    // Event listener for the "SIGN IN" button
-    signInButton.addEventListener('click', async () => {
-
-        // If the user is logged in, initiate the logout process
-        if (signInText.textContent === 'SIGN OUT') {
+    if (signInText.textContent = 'SIGN OUT') {
+        // Event listener for the "SIGN IN" button
+        signInText.addEventListener('click', async () => {
             try {
                 // Send a POST request to log the user out
                 const response = await fetch('/api/members/logout', {
@@ -69,10 +66,13 @@ document.addEventListener('DOMContentLoaded', async function () {
             } catch (error) {
                 console.error('Error logging out:', error);
             }
-        } else {
-            window.location.href = '/login'; // If the user is not logged in, just redirect to the login page
-        }
-    });
+        });
+    }
+    if (signInButton) {
+        signInButton.addEventListener('click', async () => {
+            window.location.href = '/login';
+        })
+    }
 
     // Initial setup
     handleScreenSize();

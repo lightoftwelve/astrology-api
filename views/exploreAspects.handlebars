@@ -1,0 +1,36 @@
+<body>
+    <form action="/astrology/get-aspect-description" method="post">
+        <label for="body1">Select First Body:</label>
+        <select name="body1" id="body1">
+            {{#each celestialBodies}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+
+        <label for="body2">Select Second Body:</label>
+        <select name="body2" id="body2">
+            {{#each celestialBodies}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+
+        <label for="aspect">Select Aspect:</label>
+        <select name="aspect" id="aspect">
+            {{#each aspects}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+        </select>
+
+        <input type="submit" value="Get Description">
+    </form>
+    <script>
+        document.querySelector("form").addEventListener("submit", function (event) {
+            const body1 = document.getElementById("body1").value;
+            const body2 = document.getElementById("body2").value;
+
+            if (body1 === body2) {
+                alert("Please select two different celestial bodies.");
+                event.preventDefault();
+            }
+        });
+    </script>

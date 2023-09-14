@@ -31,6 +31,10 @@ AstrologyAspectData.init(
             type: DataTypes.STRING,
             allowNull: true,
         },
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,

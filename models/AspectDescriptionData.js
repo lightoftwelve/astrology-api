@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class ZodiacSignData extends Model { }
+class AspectDescriptionData extends Model { }
 
-ZodiacSignData.init(
+AspectDescriptionData.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,34 +11,37 @@ ZodiacSignData.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        sign: {
+        body_id_1: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        symbol: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        dates: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        image_url: {
+        body_id_2: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: 'default_image_url_here'
         },
-        sign_meaning: {
+        aspect: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        description: {
             type: DataTypes.TEXT,
-            allowNull: false
-        }
+            allowNull: true,
+        },
     },
     {
         sequelize,
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'zodiac_sign_data'
-    });
+        modelName: 'aspect_description_data',
 
-module.exports = ZodiacSignData;
+        indexes: [
+            {
+                unique: true,
+                fields: ['body_id_1', 'body_id_2', 'aspect']
+            }
+        ]
+    }
+);
+
+module.exports = AspectDescriptionData;

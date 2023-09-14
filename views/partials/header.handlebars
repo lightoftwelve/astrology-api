@@ -31,11 +31,19 @@
             <a href="https://lightoftwelve.com/collections/crystals">SHOP</a>
             <a href="https://lightoftwelve.com/blogs/learning-about-tarot">TAROT CARD MEANINGS</a>
             <a href="https://lightoftwelve.com/blogs/the-healing-crystal-guide">CRYSTAL MEANINGS</a>
-            <a href="#">ASTROLOGY</a>
+            <a href="/">ASTROLOGY</a>
         </nav>
+        {{#if logged_in}}
+        <div class="sign-in" id="signOutButton">
+            <i class="fas fa-user"></i><span id="signInText">SIGN OUT</span>
+        </div>
+
+        {{else}}
         <div class="sign-in" id="signInButton">
             <i class="fas fa-user"></i><span id="signInText">SIGN IN</span>
         </div>
+        {{/if}}
+
     </div>
 </header>
 

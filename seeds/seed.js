@@ -1,10 +1,11 @@
 const sequelize = require('../config/connection');
-const { Member, AstrologyAspectData, CelestialBodyData, ZodiacSignData } = require('../models');
+const { Member, AstrologyAspectData, CelestialBodyData, ZodiacSignData, GetAspectDescription } = require('../models');
 
 const memberData = require('./memberData.json');
 const aspectData = require('./aspectData.json');
 const celestialData = require('./celestialData.json');
 const zodiacData = require('./zodiacSignData.json');
+const aspectDescriptionData = require('./aspectDescriptionData.json');
 
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
@@ -37,6 +38,13 @@ const seedDatabase = async () => {
         returning: true,
     });
     console.log("successfully seeded zodiac data")
+
+    console.log("seeding aspect descriptions...")
+    await GetAspectDescription.bulkCreate(aspectDescriptionData, {
+        individualHooks: true,
+        returning: true,
+    });
+    console.log("successfully seeded aspect description data")
 
     process.exit(0);
 };

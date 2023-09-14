@@ -1,0 +1,35 @@
+<h2>Your Astrology Aspects</h2>
+<table class="aspectsTable">
+    <thead>
+        <tr>
+            <th class="planetNameTable">Planet #1</th>
+            <th>Aspect</th>
+            <th>Planet #2</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each validAstrologyAspects}}
+        <tr class="aspectsTableColumn">
+            <td class="aspectsTableContent">
+                {{body_name_1}}<br>
+                <img src="/images/celestial_bodies/{{body_id_1}}.png" alt="{{body_name_1}}" width="50"
+                    style="margin-top: 10px;">
+            </td>
+            <td class=" aspectsTableContent">
+                {{aspect}}<br>
+                <img src="/images/aspects/{{aspect}}.svg" alt="{{aspect}}" width="50" style="margin-top: 10px;">
+            </td>
+            <td class="aspectsTableContent">
+                {{body_name_2}}<br>
+                <img src="/images/celestial_bodies/{{body_id_2}}.png" alt="{{body_name_2}}" width="50"
+                    style="margin-top: 5px;">
+            </td>
+            <td class="aspectsTableContent">
+                {{aspect}}<br>
+                <p>{{description}}</p>
+            </td>
+        </tr>
+        {{/each}}
+        </div>
+    </tbody>
+</table>

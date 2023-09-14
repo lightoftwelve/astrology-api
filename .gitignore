@@ -6,3 +6,7 @@ node_modules
 /public/images
 /views/dashboard.handlebars
 /public/js/logout.js
+/seeds
+seeds
+/seeds/zodiacSignData.json
+/seeds/combinations.json

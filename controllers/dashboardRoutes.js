@@ -1,18 +1,9 @@
 const router = require('express').Router();
-const { Member } = require('../models');
 const { isAuthenticatedView } = require('../utils/isAuthenticated');
 
 router.get('/', isAuthenticatedView, async (req, res) => {
     try {
-        const memberData = await Member.findAll({
-            attributes: { exclude: ['password'] },
-            order: [['email', 'ASC']],
-        });
-
-        const members = memberData.map((info) => info.get({ plain: true }));
-
-        res.render('dashboard', {
-            members,
+        res.render(req.session.logged_in ? 'dashboard' : 'login', {
             logged_in: req.session.logged_in,
         });
     } catch (err) {
@@ -26,8 +17,27 @@ router.get('/login', (req, res) => {
         res.redirect('/');
         return;
     }
-
     res.render('login');
 });
+
+router.get('/new-natal-chart', isAuthenticatedView, (req, res) => {
+    try {
+        res.render("birthchart", {
+            logged_in: req.session.logged_in,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+// router.get('*', (req, res) => {
+//     try {
+
+//         res.render("404");
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// }
+// )
 
 module.exports = router;

@@ -1,0 +1,72 @@
+<h2>Your Astrology Houses</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Planet</th>
+            <th>House</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each celestialBodiesInfo}}
+        <tr>
+            <td class="houseTableContent">{{name}}<br><img src="/images/celestial_bodies/{{id}}.png" alt="{{name}}"
+                    width="50"></td>
+            <td class="houseTableContent">{{cellData.house}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+{{!-- <ul>
+    {{#each celestialBodiesInfo}}
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>House</th>
+        </tr>
+    </thead>
+    <li>
+        <strong>{{name}} ({{id}})</strong>:
+        <ul>
+            <li>Date: {{cellData.date}}</li>
+            <li>Altitude: {{cellData.altitude}}</li>
+            <li>Azimuth: {{cellData.azimuth}}</li>
+            <li>Distance AU: {{cellData.distanceAU}}</li>
+            <li>Distance KM: {{cellData.distanceKM}}</li>
+            <li>Declination: {{cellData.declination}}</li>
+            <li>Right Ascension: {{cellData.rightAscension}}</li>
+            <li>Constellation: {{cellData.constellationName}} ({{cellData.constellationShort}})</li>
+            <li>Magnitude: {{cellData.magnitude}}</li>
+            <li>House: {{cellData.house}}</li>
+        </ul>
+    </li>
+    {{/each}}
+</ul>
+
+<thead>
+    <tr>
+        <strong>{{name}} ({{id}})</strong>:
+        <th>Date: {{cellData.date}}</th>
+        <th>Altitude: {{cellData.altitude}}</th>
+        <th>Azimuth: {{cellData.azimuth}}</th>
+        <th>Distance AU: {{cellData.distanceAU}}</th>
+        <th>Distance KM: {{cellData.distanceKM}}</th>
+        <th>Declination: {{cellData.declination}}</th>
+        <th>Right Ascension: {{cellData.rightAscension}}</th>
+        <th>Constellation: {{cellData.constellationName}} ({{cellData.constellationShort}})</th>
+        <th>Magnitude: {{cellData.magnitude}}</th>
+        <th>House: {{cellData.house}}</th>
+    </tr>
+</thead>
+<tbody>
+    {{#each celestialBodiesInfo}}
+    <tr>
+        <td><img src="/path/to/images/{{id}}.jpg" alt="{{name}}" width="50"></td>
+        <td>{{name}}</td>
+        <td>{{cellData.house}}</td>
+    </tr>
+    {{/each}}
+</tbody>
+</table> --}}

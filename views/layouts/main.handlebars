@@ -15,11 +15,16 @@
 
 <body>
   <header>
-    <!-- header partial template -->
     {{> header}}
+    {{#if logged_in}}
+    {{> subheader}}
+    {{/if}}
   </header>
 
   <main>
+    {{#if logged_in}}
+    {{> aside}}
+    {{/if}}
     {{{ body }}}
   </main>
 

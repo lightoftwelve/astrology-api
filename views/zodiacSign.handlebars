@@ -1,16 +1,10 @@
-<h1>Zodiac Sign Calculator</h1>
-
-<form>
-    <input type="text" id="birthdate" placeholder="Select your birthdate">
-    <button id="calculateButton">Calculate Zodiac Sign</button>
-    <div id="result"></div>
-</form>
-
-{{#if zodiacSignData}}
-<h2>{{zodiacSignData.sign}}</h2>
-<img src="{{zodiacSignData.imageUrl}}" alt="{{zodiacSignData.sign}}">
-<p>Dates: {{zodiacSignData.dates}}</p>
-<p>Description: {{zodiacSignData.sign_meaning}}</p>
-{{/if}}
-
+{{subheader}}
+<div class="zodiacSign">
+    {{#if zodiacSignData}}
+    <h2>{{zodiacSignData.sign}}</h2>
+    <img src="{{zodiacSignData.imageUrl}}" alt="{{zodiacSignData.sign}}">
+    <p>Dates: {{zodiacSignData.dates}}</p>
+    <p>Description: {{zodiacSignData.sign_meaning}}</p>
+    {{/if}}
+</div>
 <script src="/js/zodiacSign.js"></script>

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { check, validationResult } = require('express-validator');
 const { Op } = require("sequelize");
 const { Member } = require('../../models');
+const { isAuthenticatedView, isAuthenticatedAPI } = require('../../utils/isAuthenticated');
 
 // api/members/login
 // router.post('/login', async (req, res) => {
@@ -47,7 +48,6 @@ router.post('/login',
 
         return res.json({ user: memberData, message: 'Success!' });
       });
-
     } catch (err) {
       console.error(err);
       return res.status(400).json({ message: 'Login failed. Please try again later.' });
@@ -103,6 +103,24 @@ router.post('/register',
       res.status(400).json(err);
     }
   });
+
+// api/members/user
+router.get('/user', isAuthenticatedAPI, async (req, res) => {
+  try {
+    const userId = req.session.member_id;
+
+    const user = await Member.findByPk(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ first_name: user.first_name });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 // api/members/logout
 router.post('/logout', (req, res) => {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Submission</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body>
+    <div class="generateBirthChart">
+        <h1>Your Astrology Chart</h1>
+
+        <!-- Display basic celestial information -->
+        <h2>Basic Celestial Information</h2>
+        <p>LST: {{LST}}</p>
+        <p>Ascendant: {{ascendant}}</p>
+
+        <!-- Display house cusps -->
+        <h2>House Cusps</h2>
+        <ul>
+            {{#each houseCusps}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+
+        <!-- Display celestial bodies' information -->
+        {{> celestialBodiesInfo}}
+
+        <!-- Display valid astrology aspects -->
+        {{> aspects}}
+    </div>
+
+</body>
+
+</html>

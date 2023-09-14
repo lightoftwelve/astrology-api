@@ -31,10 +31,17 @@ const sess = {
 };
 
 app.use(cors({
-  origin: ['http://localhost:3001', 'https://www.lightoftwelve.com']
+  origin: ['http://localhost:3001', 'https://www.lightoftwelve.com', 'https://code.jquery.com', 'https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js']
 }));
 
-app.use(helmet());
+// app.use(helmet({
+//   contentSecurityPolicy: {
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://code.jquery.com', 'https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js'],
+//     },
+//   },
+// }));
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));

@@ -11,14 +11,15 @@
     --black: #000;
 }
 
+
 * {
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-body {
-    font-family: 'Open Sans', sans-serif;
+main {
+    display: flex;
 }
 
 h1 {
@@ -55,12 +56,12 @@ p {
 }
 
 header {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     width: 100%;
     justify-content: center;
-
+    z-index: 100;
 }
 
 nav {
@@ -71,12 +72,13 @@ nav {
             HEADER NAV & LINKS
   --------------------------------------*/
 .headerMenu {
-    padding: 1vw 2vw;
+    padding: 0 20px;
     font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: var(--white);
+    background-color: var(--darkest);
     background-size: cover;
     background-image: url('../images/galaxy-flower-background.jpg');
 }
@@ -101,6 +103,7 @@ nav {
 }
 
 .links a {
+    font-family: 'Cormorant', serif;
     margin: 0 15px;
     color: var(--white);
     text-decoration: none;
@@ -131,8 +134,9 @@ nav {
            HEADER BANNER
   --------------------------------------*/
 .banner {
+    margin: 0;
+    padding: 10px 20px;
     font-family: 'Cormorant', serif;
-    padding: 1vw 2vw;
     font-size: 12px;
     display: flex;
     justify-content: center;
@@ -204,9 +208,7 @@ nav {
 /* --------------------------------------
              LOGIN PAGE
   --------------------------------------*/
-
 .loginPage {
-    width: 100vw;
     font-family: Arial, sans-serif;
     background: url('../images/galaxy-flower-background.jpg') no-repeat;
     background-size: cover;
@@ -215,7 +217,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     font-family: 'Cormorant', serif;
 }
 
@@ -249,7 +250,6 @@ nav {
 }
 
 #loginBtn {
-    margin: 3vh auto;
     background-color: var(--white);
     border: 1px var(--darkest) solid;
     color: var(--darkest);
@@ -374,67 +374,152 @@ nav {
 }
 
 /* --------------------------------------
-               CONTACT SECTION
+           SUBHEADER
   --------------------------------------*/
-.contact {
-    margin: 40px auto;
-    background-color: var(--white);
-    padding: 40px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+.subheader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    color: var(--white);
+    background-color: var(--darkest);
+    padding: 10px 0;
+    text-align: center;
+}
+
+.subheader a {
+    font-family: 'Cormorant', serif;
+    margin: 0 15px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.subheader a:hover {
+    color: var(--purple);
+}
+
+/* --------------------------------------
+           DASHBOARD NAV
+  --------------------------------------*/
+.dashboardNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    background-color: var(--darkest);
+}
+
+.dashImg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.dashboardNav p {
+    color: var(--white);
+    padding: 20px;
+}
+
+.astrology-intro {
+    width: 80%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    color: var(--black);
+}
+
+/* --------------------------------------
+           ASTROLOGY ASPECTS CHART
+  --------------------------------------*/
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.aspectsTable,
+th,
+td {
+    border: 1px solid black;
+}
+
+.aspectsTableColumn {
+    align-items: center;
+    justify-content: center;
+}
+
+.aspectsTableContent {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+
+.houseTableContent {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+
+/* --------------------------------------
+           ZODIAC SIGN
+  --------------------------------------*/
+.zodiacSign {
+    margin-top: 300px;
+}
+
+/* --------------------------------------
+             ASPECT FORM
+  --------------------------------------*/
+/* Form Styles */
+form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-    font-size: 14px;
-    margin-bottom: 10px;
-    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+select,
+input[type="submit"] {
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    transition: border 0.2s;
+    transition: all 0.2s ease-in-out;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-textarea:focus {
-    border-color: var(--subtitle);
+select:hover,
+input[type="submit"]:hover {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
 }
 
-textarea {
-    resize: vertical;
-}
-
-button {
-    background-color: var(--subtitle);
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
+input[type="submit"] {
     cursor: pointer;
-    transition: background-color 0.2s;
+    background-color: #007BFF;
+    color: white;
+    border: none;
 }
 
-button:hover {
-    background-color: #1f5e88;
-}
-
-/* Style for the success message */
-#success-message {
-    display: none;
-    color: green;
-    font-weight: bold;
-}
-
-/* Style to hide the form when the success message is displayed */
-#contact-form.hidden {
-    display: none;
+input[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
 /* --------------------------------------
@@ -444,7 +529,6 @@ footer {
     background-color: var(--darkest);
     color: #ecf0f1;
     padding-top: 40px;
-    width: 100vw;
     margin: 0;
 }
 
@@ -459,7 +543,6 @@ footer a:hover {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 30px;
-    width: 100vw !important;
 }
 
 .footer-content h3 {
@@ -483,7 +566,6 @@ footer a:hover {
 .resources,
 .shop {
     flex: 1;
-    min-width: 250px;
     text-decoration: none;
 }
 
@@ -565,7 +647,6 @@ footer a:hover {
     text-align: right;
     margin-top: 30px;
     font-size: 14px;
-    width: 100%;
     padding: 10px;
 }
 
@@ -579,26 +660,75 @@ footer a:hover {
 }
 
 @media (max-width: 991px) {
-    header {
-        position: fixed;
-        top: 0;
+    .logo {
+        margin: 10px;
+    }
+
+    .headerMenu {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+    }
+
+    .links a,
+    links a:active {
+        top: 200;
         left: 0;
-    }
-
-    #logo {
+        padding: 0;
         margin: 0;
+        justify-content: center;
+        align-content: center;
     }
 
-    .links {
+
+    .houseTableContent {
+        width: 100%;
+    }
+
+    .subheader {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    table {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    thead {
         display: none;
     }
 
-    .links a {
-        font-size: 1.2em;
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .footer-introduction {
+        display: none;
+    }
+
+    .dashboardNav {
+        display: none;
+    }
+
+    /* .links {
+        margin: 0;
+        display: none;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+    } */
+
+    .links a {
+        background: var(--black);
     }
 
     .links.active a {
@@ -609,10 +739,6 @@ footer a:hover {
         height: 100%;
         background: var(--black);
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
     }
 
     .toggle {
@@ -650,7 +776,6 @@ footer a:hover {
     .loginPageColumn h1 {
         font-size: 2.5em;
     }
-
 }
 
 @media (max-width: 600px) {
