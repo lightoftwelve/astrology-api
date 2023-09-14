@@ -459,7 +459,7 @@ nav {
             INTRODUCTION PAGE
   --------------------------------------*/
 .astrology-intro {
-    background-image: url('../images/login/galaxy-flowers-background.jpg');
+    background-image: url('../images/login/galaxy-flower-background.jpg');
     padding: 2rem;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     /* margin: 2rem auto; */
@@ -614,13 +614,15 @@ input[type="submit"]:hover {
 
 input[type="submit"] {
     cursor: pointer;
-    background-color: #007BFF;
+    background-color: var(--darkest);
     color: white;
     border: none;
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    color: var(--black);
+    background-color: var(--white);
+
 }
 
 .radioButton {

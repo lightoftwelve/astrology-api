@@ -1,28 +1,79 @@
+<style>
+    .background {
+        width: 100%;
+        background-image: url('../images/login/galaxy-flower-background.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: var(--white);
+        overflow: hidden;
+    }
+
+    form {
+        background: rgba(10, 10, 40, 0.9);
+        border-radius: 15px;
+        padding: 2rem;
+        width: 300px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+        font-size: 16px;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        font-size: 16px;
+        appearance: none;
+        position: relative;
+        cursor: pointer;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px 20px;
+        border: none;
+</style>
+
 <body>
-    <form action="/astrology/get-aspect-description" method="post">
-        <label for="body1">Select First Body:</label>
-        <select name="body1" id="body1">
-            {{#each celestialBodies}}
-            <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
+    <div class="background">
+        <form action="/astrology/get-aspect-description" method="post">
+            <label for="body1">Select First Body:</label>
+            <select name="body1" id="body1">
+                {{#each celestialBodies}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
 
-        <label for="body2">Select Second Body:</label>
-        <select name="body2" id="body2">
-            {{#each celestialBodies}}
-            <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
+            <label for="body2">Select Second Body:</label>
+            <select name="body2" id="body2">
+                {{#each celestialBodies}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
 
-        <label for="aspect">Select Aspect:</label>
-        <select name="aspect" id="aspect">
-            {{#each aspects}}
-            <option value="{{this}}">{{this}}</option>
-            {{/each}}
-        </select>
+            <label for="aspect">Select Aspect:</label>
+            <select name="aspect" id="aspect">
+                {{#each aspects}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
 
-        <input type="submit" value="Get Description">
-    </form>
+            <input type="submit" value="Get Description">
+        </form>
+    </div>
+
     <script>
         document.querySelector("form").addEventListener("submit", function (event) {
             const body1 = document.getElementById("body1").value;
@@ -34,3 +85,4 @@
             }
         });
     </script>
+</body>
