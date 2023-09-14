@@ -210,7 +210,7 @@ nav {
   --------------------------------------*/
 .loginPage {
     font-family: Arial, sans-serif;
-    background: url('../images/galaxy-flower-background.jpg') no-repeat;
+    background: url('../galaxy-flower-background.jpg') no-repeat;
     background-size: cover;
     background-position: center center;
     color: var(--white);
