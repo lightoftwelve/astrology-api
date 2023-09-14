@@ -461,7 +461,6 @@ nav {
 .astrology-intro {
     background-image: url('../images/login/galaxy-flowers-background.jpg');
     padding: 2rem;
-    border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     /* margin: 2rem auto; */
     max-width: 1200px;
@@ -776,9 +775,7 @@ input[type="submit"]:hover {
 .generateBirthChart {
     background: linear-gradient(to bottom right, var(--darker), var(--darkest));
     padding: 2rem;
-    border-radius: 15px;
     box-shadow: 0 5px 20px rgba(10, 10, 40, 0.9);
-    margin: 2rem auto;
     max-width: 1200px;
     color: var(--white);
     background-color: rgba(10, 10, 40, 0.05);
