@@ -48,6 +48,14 @@ router.get('/generate-personalized-astrology-natal-chart', isAuthenticatedView, 
           id: body.body_id,
           name: body.body_name,
           cellData: {
+            altitude: body.altitude,
+            azimuth: body.azimuth,
+            distanceAU: body.distanceAU,
+            distanceKM: body.distanceKM,
+            declination: body.declination,
+            rightAscension: body.rightAscension,
+            constellation: body.constellationName,
+            magnitude: body.magnitude,
             house: body.house
           }
         })) : [],

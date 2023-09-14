@@ -16,18 +16,31 @@
     <div class="generateBirthChart">
         <h1>Your Astrology Chart</h1>
 
-        <!-- Display basic celestial information -->
-        <h2>Basic Celestial Information</h2>
-        <p>LST: {{LST}}</p>
-        <p>Ascendant: {{ascendant}}</p>
+        <div class="info-section">
+            <!-- Image Column -->
+            <div class="image-column">
+                <img src="/images/celestial_bodies/{{id}}.png" alt="{{name}}" width="50">
 
-        <!-- Display house cusps -->
-        <h2>House Cusps</h2>
-        <ul>
-            {{#each houseCusps}}
-            <li>{{this}}</li>
-            {{/each}}
-        </ul>
+            </div>
+
+            <!-- Display basic celestial information -->
+            <div class="left-column">
+                <h2>Basic Celestial Information</h2>
+                <p><strong>LST:</strong> {{LST}}</p>
+                <p><strong>Ascendant:</strong> {{ascendant}}</p>
+            </div>
+
+            <!-- Display house cusps -->
+            <div class="right-column">
+                <h2>House Cusps</h2>
+                <ul>
+                    {{#each houseCusps}}
+                    <li>{{this}}</li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
 
         <!-- Display celestial bodies' information -->
         {{> celestialBodiesInfo}}

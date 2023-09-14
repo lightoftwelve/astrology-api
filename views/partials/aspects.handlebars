@@ -5,6 +5,7 @@
             <th class="planetNameTable">Planet #1</th>
             <th>Aspect</th>
             <th>Planet #2</th>
+            <th>Description</th>
         </tr>
     </thead>
     <tbody>
@@ -15,7 +16,7 @@
                 <img src="/images/celestial_bodies/{{body_id_1}}.png" alt="{{body_name_1}}" width="50"
                     style="margin-top: 10px;">
             </td>
-            <td class=" aspectsTableContent">
+            <td class="aspectsTableContent">
                 {{aspect}}<br>
                 <img src="/images/aspects/{{aspect}}.svg" alt="{{aspect}}" width="50" style="margin-top: 10px;">
             </td>
@@ -25,8 +26,14 @@
                     style="margin-top: 5px;">
             </td>
             <td class="aspectsTableContent">
-                {{aspect}}<br>
-                <p>{{description}}</p>
+                <table class="inner-table">
+                    <tr>
+                        <td class="aspect-name">{{aspect}}<br></td>
+                    <tr>
+                        <td class="aspect-description">
+                            <p>{{description}}</p>
+                        </td>
+                </table>
             </td>
         </tr>
         {{/each}}

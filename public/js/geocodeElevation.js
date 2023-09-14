@@ -38,7 +38,7 @@ autocomplete.addListener('place_changed', function () {
 });
 
 // Form Submission
-$("#userForm").submit(function (e) {
+$("#bc_userForm").submit(function (e) {
     e.preventDefault();
 
     const dataObj = {

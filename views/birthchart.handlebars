@@ -12,48 +12,53 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3BeSZ2qdTiywiZoT0uzVovhm5m1uA_cU&libraries=places"></script>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-    <form id="userForm">
-        <label for="name">Name/Nickname:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <div class="bc_body">
+        <div class="bc_container">
+            <form id="bc_userForm">
+                <label class="bc_label" for="name">Name/Nickname:</label>
+                <input class="bc_input" type="text" id="name" name="name" required><br><br>
 
-        <label>Gender:</label>
-        <input type="radio" id="male" name="gender" value="M" required>
-        <label for="male">M</label>
-        <input type="radio" id="female" name="gender" value="F">
-        <label for="female">F</label>
-        <input type="radio" id="other" name="gender" value="Other">
-        <label for="other">Other</label><br><br>
+                <div class="radioButton">
+                    <span class="bc_label">Gender:</span>
+                    <input class="bc_radio" type="radio" id="male" name="gender" value="M" required>
+                    <label class="bc_label" for="male">M</label>
+                    <input class="bc_radio" type="radio" id="female" name="gender" value="F">
+                    <label class="bc_label" for="female">F</label>
+                    <input class="bc_radio" type="radio" id="other" name="gender" value="Other">
+                    <label class="bc_label" for="other">Other</label><br><br>
+                </div>
+                <label class="bc_label" for="birthday">Birthday:</label>
+                <input class="bc_input" type="text" id="birthday" name="date" required><br><br>
 
-        <label for="birthday">Birthday:</label>
-        <input type="text" id="birthday" name="date" required><br><br>
 
-        <label for="time">Time:</label>
-        <select id="hour" name="hour" required>
-            <!-- Options from 0 to 23 for hours -->
-        </select>
-        <select id="minute" name="minute" required>
-            <!-- Options from 0 to 59 for minutes -->
-        </select>
-        <select id="second" name="second" required>
-            <!-- Options from 0 to 59 for seconds -->
-        </select><br><br>
+                <label class="bc_label" for="time">Time:</label>
+                <select class="bc_select" id="hour" name="hour" required>
+                    <!-- Options from 0 to 23 for hours -->
+                </select>
+                <select class="bc_select" id="minute" name="minute" required>
+                    <!-- Options from 0 to 59 for minutes -->
+                </select>
+                <select class="bc_select" id="second" name="second" required>
+                    <!-- Options from 0 to 59 for seconds -->
+                </select><br><br>
 
-        <label for="location">Location:</label>
-        <input type="text" id="location" required><br><br>
+                <label class="bc_label" for="location">Location:</label>
+                <input class="bc_input" type="text" id="location" required><br><br>
 
-        <!-- Hidden fields to hold longitude, latitude, and elevation -->
-        <input type="hidden" id="longitude" name="longitude">
-        <input type="hidden" id="latitude" name="latitude">
-        <input type="hidden" id="elevation" name="elevation">
+                <!-- Hidden fields to hold longitude, latitude, and elevation -->
+                <input type="hidden" id="longitude" name="longitude">
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="elevation" name="elevation">
 
-        <button type="submit">Submit</button>
-    </form>
-
-    <div id="results"></div>
-    <script src="/js/geocodeElevation.js"></script>
+                <button class="bc_button" type="submit">Submit</button>
+            </form>
+        </div>
+        {{!-- <div class="bc_results" id="results"></div> --}}
+        <script src="/js/geocodeElevation.js"></script>
 </body>
 
 </html>

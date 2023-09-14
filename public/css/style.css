@@ -9,6 +9,9 @@
     --darker: #251342;
     --darkest: #130A21;
     --black: #000;
+    --soft-glow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 30px var(--gold), 0 0 40px var(--gold);
+    /* --soft-glow: 0 0 3px var(--gold), 0 0 10px var(--gold), 0 0 3px var(--gold), 0 0 40px var(--gold); */
+
 }
 
 
@@ -453,39 +456,121 @@ nav {
 }
 
 /* --------------------------------------
-           ASTROLOGY ASPECTS CHART
+            INTRODUCTION PAGE
   --------------------------------------*/
-table {
-    border-collapse: collapse;
-    width: 100%;
+.astrology-intro {
+    background: linear-gradient(to bottom right, var(--darker), var(--darkest));
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    margin: 2rem auto;
+    max-width: 1200px;
 }
 
-.aspectsTable,
-th,
-td {
-    border: 1px solid black;
-}
-
-.aspectsTableColumn {
-    align-items: center;
-    justify-content: center;
-}
-
-.aspectsTableContent {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.astrology-intro h1 {
     text-align: center;
-    padding: 20px;
-    background-color: #f2f2f2;
+    color: var(--gold);
+    padding: 2rem;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
 }
 
-.houseTableContent {
+.astrology-basics,
+.why-it-matters {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.astrology-basics h2,
+.why-it-matters h2 {
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+.astrology-basics p,
+.why-it-matters p {
+    color: var(--white);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.astrology-basics div,
+.why-it-matters div {
+    display: flex;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.astrology-basics img,
+.why-it-matters img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.astrology-basics strong,
+.why-it-matters strong {
+    color: var(--gold);
+}
+
+ul {
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+ul li {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+.cta {
+    background-color: rgba(10, 10, 40, 0.9);
+    border-radius: 15px;
+    padding: 20px 40px;
     text-align: center;
-    padding: 20px;
-    background-color: #f2f2f2;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    margin: 20px auto;
+    max-width: 600px;
+    overflow: hidden;
+}
+
+.cta p {
+    font-size: 18px;
+    color: #E0E0FF;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.5;
+}
+
+.cta button {
+    background-color: #7B68EE;
+    border: none;
+    border-radius: 25px;
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
+}
+
+.cta button:hover {
+    background-color: #5A4DAD;
+    transform: scale(1.05);
+}
+
+.cta button:active {
+    transform: scale(0.95);
 }
 
 /* --------------------------------------
@@ -537,6 +622,374 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+.radioButton {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+/* --------------------------------------
+    BIRTHCHART ENTER RESULTS PAGE
+  --------------------------------------*/
+.bc_body {
+    background-color: var(--darkest);
+    color: var(--black);
+    padding: 50px;
+    background-image: url('../images/galaxy-flower-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+.bc_container {
+    background-color: rgba(10, 10, 40, 0.8);
+    padding: 50px;
+    background-image: url('../images/');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+#bc_userForm {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    width: 500px;
+    justify-content: center;
+}
+
+.bc_label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--gold);
+    /* Giving the label the golden touch */
+}
+
+.bc_input,
+.bc_select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--gold);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+}
+
+.bc_radio {
+    margin-right: 5px;
+}
+
+.bc_button {
+    background-color: #7B68EE;
+    border: none;
+    border-radius: 25px;
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 12px 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
+}
+
+.bc_button:hover {
+    background-color: #5A4DAD;
+}
+
+.bc_button:active {
+    transform: scale(0.95);
+}
+
+.bc_results {
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 20px;
+    background-color: rgba(10, 10, 40, 0.9);
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* jQuery Datepicker Styling */
+.ui-datepicker {
+    border: 1px solid #7B68EE;
+    background-color: rgba(10, 10, 40, 0.9);
+}
+
+.ui-datepicker-header {
+    background-color: #7B68EE;
+    color: #FFFFFF;
+}
+
+.ui-datepicker-title {
+    font-weight: 600;
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next {
+    cursor: pointer;
+}
+
+.ui-datepicker-prev span,
+.ui-datepicker-next span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #E0E0FF;
+}
+
+.ui-datepicker-calendar .ui-state-default {
+    background-color: rgba(10, 10, 40, 0.9);
+    color: #E0E0FF;
+}
+
+.ui-datepicker-calendar .ui-state-active {
+    background-color: #5A4DAD;
+}
+
+/* --------------------------------------
+            BIRTHCHART PAGE
+  --------------------------------------*/
+.generateBirthChart {
+    background: linear-gradient(to bottom right, var(--darker), var(--darkest));
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    margin: 2rem auto;
+    max-width: 1200px;
+    color: var(--white);
+}
+
+.generateBirthChart h1,
+.generateBirthChart h2 {
+    text-align: center;
+    color: var(--gold);
+    padding: 1rem;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.generateBirthChart h1 {
+    text-shadow: var(--soft-glow);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.generateBirthChart h2 {
+    text-shadow: var(--soft-glow);
+    border: 1px solid var(--gold);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.generateBirthChart p {
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.generateBirthChart ul {
+    list-style-type: square;
+    margin-left: 20px;
+    margin-bottom: 1.5rem;
+}
+
+.generateBirthChart li {
+    color: var(--white);
+    margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------
+     HOUSE & ASTROLOGY ASPECTS CHART
+  --------------------------------------*/
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 2rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: rgba(10, 10, 40, 0.9);
+}
+
+th,
+td {
+    border: 1px solid var(--gold);
+    padding: 15px;
+    text-align: center;
+}
+
+th {
+    text-shadow: var(--soft-glow);
+    background-image: linear-gradient(45deg, rgba(10, 10, 40, 0.8), rgba(10, 10, 40, 0.9));
+    font-weight: bold;
+}
+
+td {
+    background-color: rgba(255, 255, 255, 0.1);
+    position: relative;
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+td img {
+    filter: brightness(1.4) drop-shadow(0 0 05px var(--gold));
+    word-wrap: break-word;
+    max-width: 100%;
+    border-radius: 50%;
+    padding: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2),
+        /* Original shadow */
+        0 0 10px var(--gold),
+        /* Added glow */
+        0 0 20px var(--gold),
+        /* More glow for intensity */
+        0 0 20px var(--gold);
+    /* Even more glow */
+    margin: 10px 0;
+}
+
+.houseTableContent img {
+    width: 20%;
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.aspectsTableContent img {
+    width: 50%;
+}
+
+.houseTableContent,
+.aspectsTableContent {
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.inner-table {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 40, 0.8);
+    box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 20px var(--gold);
+    overflow: hidden;
+    /* To make sure border-radius is applied to all child elements */
+}
+
+.aspect-name,
+.aspect-description {
+    padding: 10px;
+    color: var(--white);
+}
+
+.aspect-name {
+    font-weight: bold;
+    background-color: rgba(10, 10, 40, 0.9);
+}
+
+
+/* --------------------------------------
+           BASIC CELESTIAL INFORMATION
+  --------------------------------------*/
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 2rem;
+}
+
+.image-column {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-column img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.left-column {
+    flex: 2;
+    padding: 1rem;
+    background-color: rgba(10, 10, 40, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.right-column {
+    flex: 1;
+    padding: 1rem;
+    background-color: rgba(10, 10, 40, 0.05);
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h2 {
+    margin-top: 0;
+}
+
+/* --------------------------------------
+          HOUSE TABLE
+  --------------------------------------*/
+.inner-info-table {
+    margin: 30px;
+    width: 80%;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 40, 0.8);
+    box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 20px var(--gold);
+    overflow: hidden;
+    /* To make sure border-radius is applied to all child elements */
+    border-collapse: collapse;
+    border: none;
+    /* Remove outer borders for the inner table */
+}
+
+.planet-name,
+.planet-info {
+    padding: 10px;
+    color: var(--white);
+    border: none;
+    /* Remove cell borders for the inner table */
+}
+
+.planet-name {
+    font-weight: bold;
+    background-color: rgba(10, 10, 40, 0.9);
+    text-align: left;
+    /* Align to the left */
+}
+
+.planet-info {
+    text-align: left;
+    /* Align to the left */
 }
 
 /* --------------------------------------
@@ -723,9 +1176,9 @@ footer a:hover {
         color: var(--purple);
     }
 
-    .houseTableContent {
+    /* .houseTableContent {
         width: 100%;
-    }
+    } */
 
     .subheader {
         display: flex;
@@ -733,17 +1186,17 @@ footer a:hover {
         flex-direction: column;
     }
 
-    table {
+    /* table {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         flex-wrap: wrap;
-    }
+    } */
 
-    thead {
+    /* thead {
         display: none;
-    }
+    } */
 
     .footer-content {
         display: flex;
