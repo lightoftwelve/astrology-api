@@ -209,20 +209,22 @@ nav {
              LOGIN PAGE
   --------------------------------------*/
 .loginPage {
+    width: 100%;
     font-family: Arial, sans-serif;
     background: url('../images/login/galaxy-flower-background.jpg') no-repeat;
     background-size: cover;
     background-position: center center;
     color: var(--white);
+    font-family: 'Cormorant', serif;
+    height: 800px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    font-family: 'Cormorant', serif;
+    align-content: center;
 }
-
 
 .loginPageColumn {
     display: flex;
+    padding: 10px;
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -254,10 +256,9 @@ nav {
     border: 1px var(--darkest) solid;
     color: var(--darkest);
     width: 175px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
     font-size: 12px;
+    margin-top: 30px;
+    padding: 10px;
 }
 
 #loginBtn:hover {
@@ -265,9 +266,6 @@ nav {
     border: 1px var(--white) solid;
     color: var(--white);
     width: 175px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
 }
 
 .overlay {
