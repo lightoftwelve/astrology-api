@@ -5,7 +5,6 @@ const memberData = require('./memberData.json');
 const aspectData = require('./aspectData.json');
 const celestialData = require('./celestialData.json');
 const zodiacData = require('./zodiacSignData.json');
-const aspectDescriptionData = require('./aspectDescriptionData.json');
 const getAspectDescription = require('../controllers/helpers/getAspectDescription');
 
 const seedDatabase = async () => {
