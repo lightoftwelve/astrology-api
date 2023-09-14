@@ -5,7 +5,7 @@ const memberData = require('./memberData.json');
 const aspectData = require('./aspectData.json');
 const celestialData = require('./celestialData.json');
 const zodiacData = require('./zodiacSignData.json');
-const getAspectDescription = require('../controllers/helpers/getAspectDescription');
+const getAspectDescription = require('./aspectDescriptionData.json');
 
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
@@ -39,12 +39,17 @@ const seedDatabase = async () => {
     });
     console.log("successfully seeded zodiac data")
 
-    console.log("seeding aspect descriptions...")
-    await AspectDescriptionData.bulkCreate(getAspectDescription, {
-        individualHooks: true,
-        returning: true,
-    });
-    console.log("successfully seeded aspect description data")
+    try {
+        await AspectDescriptionData.bulkCreate(getAspectDescription, {
+            individualHooks: true,
+            returning: true,
+        });
+        console.log("successfully seeded aspect description data");
+    } catch (error) {
+        console.error("Error seeding aspect descriptions:", error);
+    }
+
+
 
     process.exit(0);
 };

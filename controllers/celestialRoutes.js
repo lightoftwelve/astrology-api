@@ -34,7 +34,7 @@ router.get('/generate-personalized-astrology-natal-chart', isAuthenticatedView, 
     console.log('celestial Body instance', celestialBodies);
 
     // Fetch astrology aspect data
-    const validAstrologyAspects = await AstrologyAspectData.findAll({
+    const validAstrologyAspects = await AspectDescriptionData.findAll({
       where: { user_id: userId }
     });
 
