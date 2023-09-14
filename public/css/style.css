@@ -459,7 +459,7 @@ nav {
             INTRODUCTION PAGE
   --------------------------------------*/
 .astrology-intro {
-    background-image: url('../images/login/galaxy-textures.jpg');
+    background-image: url('../images/login/galaxy-flowers-background.jpg');
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -478,7 +478,7 @@ nav {
 
 .astrology-basics,
 .why-it-matters {
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(10, 10, 40, 0.8);
     padding: 2rem;
     border-radius: 15px;
     margin-bottom: 2rem;
@@ -644,8 +644,22 @@ input[type="submit"]:hover {
     width: 100%;
 }
 
+.bc_body h2 {
+    font-family: 'Times New Roman', serif;
+    /* Change this to any fancy font you'd prefer */
+    font-size: 2em;
+    color: var(--gold);
+    text-align: center;
+    text-shadow: 0 0 15px var(--gold), 0 0 25px var(--gold);
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(10, 10, 40, 0.5);
+    border-radius: 5px;
+    border: 1px solid var(--gold);
+}
+
+
 .bc_container {
-    background-color: rgba(10, 10, 40, 0.8);
     padding: 50px;
     background-color: rgba(10, 10, 40, 0.9);
     background-repeat: no-repeat;
@@ -677,50 +691,46 @@ input[type="submit"]:hover {
     /* Giving the label the golden touch */
 }
 
-.bc_input,
-.bc_select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    border: 1px solid var(--gold);
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--white);
+.bc_label,
+.bc_button {
+    color: var(--gold);
 }
 
-.bc_radio {
-    margin-right: 5px;
+.bc_input,
+.bc_select,
+.bc_radio+.bc_label {
+    background-color: rgba(10, 10, 40, 0.5);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.bc_input:focus,
+.bc_select:focus {
+    box-shadow: 0 0 10px var(--gold);
+    outline: none;
+}
+
+.bc_radio:checked+.bc_label {
+    box-shadow: 0 0 10px var(--gold);
 }
 
 .bc_button {
-    background-color: #7B68EE;
+    background-color: var(--gold);
+    color: rgba(10, 10, 40);
+    padding: 10px 15px;
     border: none;
-    border-radius: 25px;
-    color: #FFFFFF;
-    font-size: 18px;
-    padding: 12px 25px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    font-weight: 600;
-    letter-spacing: 1px;
-    box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
+    transition: background-color 0.3s ease;
 }
 
 .bc_button:hover {
-    background-color: #5A4DAD;
-}
-
-.bc_button:active {
-    transform: scale(0.95);
-}
-
-.bc_results {
-    max-width: 600px;
-    margin: 20px auto;
-    border-radius: 20px;
-    background-color: rgba(10, 10, 40, 0.9);
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    background-color: rgba(10, 10, 40);
+    color: var(--gold);
+    border: 1px solid var(--gold);
 }
 
 /* jQuery Datepicker Styling */
