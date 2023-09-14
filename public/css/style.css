@@ -80,7 +80,7 @@ nav {
     color: var(--white);
     background-color: var(--darkest);
     background-size: cover;
-    background-image: url('../images/galaxy-flower-background.jpg');
+    background-image: url('../images/login/galaxy-flower-background.jpg');
 }
 
 .iconWidth {
@@ -210,7 +210,7 @@ nav {
   --------------------------------------*/
 .loginPage {
     font-family: Arial, sans-serif;
-    background: url('../galaxy-flower-background.jpg') no-repeat;
+    background: url('../images/login/galaxy-flower-background.jpg') no-repeat;
     background-size: cover;
     background-position: center center;
     color: var(--white);
