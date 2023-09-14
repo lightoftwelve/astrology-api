@@ -31,10 +31,10 @@
         <!-- Hidden Popup for registration -->
         <div id="registerOverlay" class="overlay">
             <div class="popup">
-                <button id="closeRegisterButton">
+                <button id="closeButton">
                     <span>X</span>
                 </button>
-                <span>REGISTER</span>
+                {{!-- <span>REGISTER</span> --}}
                 <form action="/api/members/register" method="post">
                     <input type="text" name="username" placeholder="Username">
                     <input type="text" name="first_name" placeholder="First Name">
@@ -47,4 +47,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".toggle").click(function () {
+            $(".links").toggleClass("open");
+        });
+    });
+</script>
 <script src="/js/loginPopup.js"></script>
