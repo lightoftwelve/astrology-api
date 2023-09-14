@@ -4,5 +4,4 @@ node_modules
 .env
 /images
 /public/images
-/views/dashboard.handlebars
 /public/js/logout.js
