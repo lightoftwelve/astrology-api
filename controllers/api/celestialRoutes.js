@@ -201,67 +201,6 @@ router.post('/calculate', isAuthenticatedAPI, async (req, res) => {
   }
 });
 
-//   CelestialBodyData.destroy({ where: { user_id: userId } })
-//     .then(() => {
-//       // Insert the new data (whether old data existed or not)
-//       return CelestialBodyData.bulkCreate(celestialBodyDataToInsert);
-//     })
-//     .then(() => {
-//       // Delete old aspects for the user
-//       return AstrologyAspectData.destroy({ where: { user_id: userId } });
-//     })
-//     .then(() => {
-//       // Save the valid astrology aspects
-//       const aspectsToInsert = processAstrologyAspects(celestialBodiesInfo) || [];
-//       const validAstrologyAspects = aspectsToInsert.filter(aspect => aspect !== null);
-
-//       Promise.all(validAstrologyAspects.map(async aspect => {
-//         const description = await getAspectDescription(aspect);
-//         return { user_id: userId, ...aspect, description };
-//       })).then(aspectsWithDescriptions => {
-//         return AstrologyAspectData.bulkCreate(aspectsWithDescriptions);
-//       });
-//     .then(() => {
-//         await AstrologyHouseData.destroy({ where: { user_id: userId } });
-//         .then(() => {
-//           // Save celestial body's astrology house data
-//           for (let body of celestialData) {
-//             await AstrologyHouseData.upsert({
-//               user_id: userId,
-//               LST,
-//               ascendant,
-//               house_cusps: JSON.stringify(houseCusps),
-//               house: body.cellData.house,
-//               bodyName: body.cellData.bodyName,
-//             });
-//           }
-//         });
-//         res.json({
-//           LST,
-//           ascendant,
-//           houseCusps,
-//           planetAndHouseArray
-//         });
-//         // const validAstrologyAspects = aspectsToInsert.filter(aspect => aspect !== null);
-//         // return AstrologyAspectData.bulkCreate(validAstrologyAspects.map(aspect => ({ user_id: userId, ...aspect, description: getAspectDescription(aspect) })));
-//       })
-//         .then(data => {
-//           console.log('Data and aspects saved successfully');
-//           res.json({
-//             LST,
-//             ascendant,
-//             houseCusps,
-//             celestialBodiesInfo,
-//             validAstrologyAspects
-//           });
-//         })
-//         .catch(error => {
-//           console.error('Error saving data:', error);
-//           res.status(500).json({ error: 'Error saving data' });
-//         });
-//     });
-// });
-
 // --------------------------------------------
 //              GET CELESTIAL DATA
 // --------------------------------------------
