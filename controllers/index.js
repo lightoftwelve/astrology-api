@@ -7,7 +7,7 @@ const dashboardRoutes = require('./dashboardRoutes');
 // Initialize the S3 client
 const s3 = new AWS.S3();
 
-router.get('/images/:imageName', async (req, res) => {
+router.get('/images/:folderName/:imageName', async (req, res) => {
   try {
     // Extract the image name from the request params
     const folderName = req.params.folderName;
