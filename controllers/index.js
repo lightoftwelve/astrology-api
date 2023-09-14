@@ -10,10 +10,11 @@ const s3 = new AWS.S3();
 router.get('/images/:imageName', async (req, res) => {
   try {
     // Extract the image name from the request params
+    const folderName = req.params.folderName;
     const imageName = req.params.imageName;
 
     // Construct the S3 key based on naming convention
-    const s3Key = `images/${imageName}`;
+    const s3Key = `images/${folderName}/${imageName}`;
 
     // Specifing S3 bucket and S3 key
     const params = {
