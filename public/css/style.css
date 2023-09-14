@@ -285,12 +285,13 @@ nav {
     background-color: var(--white);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 80px 50px;
     border-radius: 10px;
     text-align: center;
-    max-width: 300px;
+    max-width: 400px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    position: relative;
 }
 
 .popup span {
@@ -308,9 +309,16 @@ nav {
     text-align: left;
 }
 
+.login-page-form {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
 .popup input[type="text"],
 .popup input[type="password"] {
-    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -357,13 +365,23 @@ nav {
 
 .popup button#closeButton {
     background-color: var(--white);
-    padding: 10px;
+    border-radius: 20%;
+    padding: 7px 10px;
     color: var(--darkest);
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     position: absolute;
-    top: 0px;
-    right: -18px;
+    top: 5px;
+    right: 5px;
+}
+
+.popup button#closeButton:hover {
+    color: var(--white);
+    background-color: var(--darkest);
+}
+
+.popup button#closeButton span:hover {
+    color: var(--white);
 }
 
 .popup button#closeButton span {
