@@ -459,11 +459,11 @@ nav {
             INTRODUCTION PAGE
   --------------------------------------*/
 .astrology-intro {
-    background: linear-gradient(to bottom right, var(--darker), var(--darkest));
+    background-image: url('../images/login/galaxy-textures.jpg');
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    margin: 2rem auto;
+    /* margin: 2rem auto; */
     max-width: 1200px;
 }
 
@@ -637,7 +637,7 @@ input[type="submit"]:hover {
     background-color: var(--darkest);
     color: var(--black);
     padding: 50px;
-    background-image: url('../images/login/galaxy-textures.jpg');
+    background-image: url('../images/login/galaxy-flowers-background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -651,7 +651,7 @@ input[type="submit"]:hover {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    max-width: 1200px;
+    width: 80%;
     margin: 0 auto;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
