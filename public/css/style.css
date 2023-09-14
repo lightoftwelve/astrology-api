@@ -647,7 +647,7 @@ input[type="submit"]:hover {
 .bc_container {
     background-color: rgba(10, 10, 40, 0.8);
     padding: 50px;
-    background-image: url('../images/login/galaxy-flower-background.jpg');
+    background-color: rgba(10, 10, 40, 0.9);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
