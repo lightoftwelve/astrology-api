@@ -49,8 +49,6 @@ app.use(cors({
 //     },
 //   },
 // }));
-app.disable('view cache');
-
 
 // Add express-session and store as Express.js middleware
 app.use(session(sess));
