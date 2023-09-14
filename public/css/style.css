@@ -767,10 +767,12 @@ input[type="submit"]:hover {
     background: linear-gradient(to bottom right, var(--darker), var(--darkest));
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px rgba(10, 10, 40, 0.9);
     margin: 2rem auto;
     max-width: 1200px;
     color: var(--white);
+    background-color: rgba(10, 10, 40, 0.05);
+
 }
 
 .generateBirthChart h1,
@@ -779,7 +781,7 @@ input[type="submit"]:hover {
     color: var(--gold);
     padding: 1rem;
     border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(10, 10, 40, 0.9);
     margin-bottom: 2rem;
 }
 
@@ -804,7 +806,7 @@ input[type="submit"]:hover {
 }
 
 .generateBirthChart ul {
-    list-style-type: square;
+    list-style-type: none;
     margin-left: 20px;
     margin-bottom: 1.5rem;
 }
@@ -954,6 +956,24 @@ td img {
 
 .info-section h2 {
     margin-top: 0;
+}
+
+.inner-glow-table {
+    width: 100%;
+    border-radius: 10px;
+    background-color: rgba(10, 10, 40, 0.8);
+    box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 20px var(--gold);
+    overflow: hidden;
+    /* To ensure border-radius is applied to all child elements */
+    border-collapse: collapse;
+    border: none;
+    /* Remove outer borders for the inner table */
+}
+
+.inner-glow-table td {
+    border: none;
+    /* Remove cell borders for the inner table */
+    padding: 15px;
 }
 
 /* --------------------------------------
