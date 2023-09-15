@@ -101,5 +101,12 @@ This project was independently developed by myself, Victoria Alawi.
 - <b>LinkedIn</b>: [@Victoria Alawi](https://www.linkedin.com/in/victoria-alawi-872984250/)
 - <b>Website</b>: [www.lightoftwelve.com](http://www.lightoftwelve.com)
 
+## Acknowledgements
+I would like to express my gratitude to the following individuals for their invaluable assistance and support during the initial development of this project:
+- **AGabriels (Tutor)**: I want to express my sincere gratitude to AGabriels for their exceptional mentorship, making the complexities of this project's new concepts easily understandable. Their support was instrumental in my efforts to overcome challenges and grasp the foundational aspects of this project at a deeper level.
+- **Sean Roshan (Teacher) & Serena Guo (TA)**: I want to extend my thanks to Sean Roshan and Serena Guo for providing me with essential insights and guidance throughout the initial stages of this project.
+
+I look forward to continuing this project and building upon the foundation they have helped me establish | September 14, 2023.
+
 ## License 
 The license for this project is currently unavailable.
