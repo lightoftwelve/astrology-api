@@ -82,7 +82,7 @@ In the pipeline for Light of Twelve's app:
   - Horizontal (or Horizon)
   - Sripati
   - Gauquelin Sectors
-- Variety of House Systems:
+- Variety of Astrology Systems:
   - Tropical Zodiac (or Western Zodiac)
   - Sidereal Zodiac
   - Draconic Zodiac
