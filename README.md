@@ -4,14 +4,15 @@
 Welcome to the Light of Twelve's astrology app. Dive into a digital sanctuary where the age-old wisdom of astrology intersects with modern aesthetics. This platform allows you to explore your astrological birth chart, offering insights into your personality, strengths, and potential, all while providing an intuitive and immersive experience.
 
 ## Table of Contents
-- [Features](#Features)
-- [Usage Guide](#Usage-guide)
-- [Screenshots](#Screenshots)
-- [Technologies Used](#Technologies-used)
-- [Future Developments](#Future-Developments)
-- [Demonstration](#Demonstration)
-- [Credits](#Credits)
-- [License](#License)
+- [Features](fFeatures)
+- [Usage Guide](#usage-guide)
+- [Screenshots](#screenshots)
+- [Technologies Used](#technologies-used)
+- [Future Developments](#future-developments)
+- [Demonstration](#demonstration)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
 
 ## Features
 - <b>Birth Chart Calculation</b>: Get a detailed visualization of your birth chart including:
