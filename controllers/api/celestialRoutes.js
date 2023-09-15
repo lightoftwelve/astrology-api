@@ -209,8 +209,6 @@ router.post('/calculate', isAuthenticatedAPI, async (req, res) => {
   }
 });
 
-
-
 // --------------------------------------------
 // BELOW ARE NOT APART OF THE PROJECT FOR GRADING :] REFACTORED FOR USE OUTSIDE OF COURSE OBJECTIVE FOR CONTINUED APP CREATION
 // --------------------------------------------

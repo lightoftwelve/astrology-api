@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 if (response.ok) {
                     window.location.href = '/login'; // Redirect to the login page after logout
                 } else {
-                    alert('Logout failed. Please try again.');
+                    alert('Use the signin button below to sign in.');
                 }
             } catch (error) {
                 console.error('Error logging out:', error);

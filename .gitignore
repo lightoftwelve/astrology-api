@@ -2,6 +2,4 @@ vs_code
 node_modules
 .DS_store
 .env
-/images
-/public/images
 /public/js/logout.js

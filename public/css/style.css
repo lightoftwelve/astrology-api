@@ -429,15 +429,14 @@ nav {
   --------------------------------------*/
 .dashboardNav {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 20%;
     background-color: var(--darkest);
 }
 
 .dashImg {
     display: flex;
-    align-items: center;
     justify-content: center;
     text-align: center;
 }
@@ -448,7 +447,7 @@ nav {
 }
 
 .astrology-intro {
-    width: 80%;
+    width: 100%;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -466,13 +465,29 @@ nav {
     max-width: 1200px;
 }
 
+.introBanner {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    margin-bottom: 20px;
+}
+
+.introBanner h1 {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
 .astrology-intro h1 {
     text-align: center;
     color: var(--gold);
     padding: 2rem;
     border-radius: 15px;
     background-color: rgba(0, 0, 0, 0.2);
-    margin-bottom: 2rem;
 }
 
 .astrology-basics,
@@ -573,7 +588,7 @@ ul li {
 }
 
 /* --------------------------------------
-           ASPECT SELECTION PAGE
+           ASPECT DESCRIPTION PAGE
   --------------------------------------*/
 .background {
     width: 100%;
