@@ -1,3 +1,6 @@
+// --------------------------------------------------------
+//      FUNCTION TO GRAB ASTROLOGY ASPECT DESCRIPTION
+// --------------------------------------------------------
 const { Op } = require('sequelize');
 const AspectDescriptionData = require('../../models/AspectDescriptionData');
 
@@ -11,7 +14,6 @@ async function getAspectDescription(aspect) {
             ]
         }
     });
-    console.log("Querying with aspect:", aspect.aspect, "and bodies:", aspect.body_id_1, aspect.body_id_2);
 
     return descriptionRecord ? descriptionRecord.description : null;
 }

@@ -1,3 +1,6 @@
+// --------------------------------------------
+//       FETCH WELCOME USER DISPLAY
+// --------------------------------------------
 function fetchUserData() {
     fetch('/api/members/user')
         .then((response) => {

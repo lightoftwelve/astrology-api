@@ -12,9 +12,9 @@ const { CelestialBodyData, AstrologyAspectData, AstrologyHouseData, Member } = r
 const { getAspectDescription } = require('../helpers/getAspectDescription');
 // const { getInterpretation } = require('../helpers/getInterpretation');
 
-// --------------------------------------------
+// ------------------------------------------------------
 //     Connection to AstromonyAPI (astronomyapi.com)
-// --------------------------------------------
+// ------------------------------------------------------
 if (!process.env.ASTRONOMY_API_KEY) {
   throw new Error('ASTRONOMY_API_KEY environment variable is not defined');
 }
@@ -149,6 +149,7 @@ router.post('/calculate', isAuthenticatedAPI, async (req, res) => {
       body.cellData.house = calculateHouse(body.cellData.azimuth, houseCusps);
     });
 
+    // Put together a planet & house result array
     const planetAndHouseArray = celestialBodiesInfo.filter(body => body.cellData.bodyName !== "Earth").map(body => ({
       bodyName: body.cellData.bodyName, house: body.cellData.house
     }));
@@ -158,14 +159,17 @@ router.post('/calculate', isAuthenticatedAPI, async (req, res) => {
 
     // Try to delete existing data for this user (if it exists)
     await CelestialBodyData.destroy({ where: { user_id: userId } });
+    // Insert new celestial body data for the user into the CelestialBodyData table
     await CelestialBodyData.bulkCreate(celestialBodyDataToInsert);
 
     // Try to delete existing data for this user (if it exists)
     await AstrologyAspectData.destroy({ where: { user_id: userId } });
 
+    // Process astrology aspects from celestial body data, filtering null or invalid aspects
     const aspectsToInsert = processAstrologyAspects(celestialBodiesInfo) || [];
     validAstrologyAspects = aspectsToInsert.filter(aspect => aspect !== null);
 
+    // Retrieve aspect descriptions in parallel for valid astrology aspects
     const aspectsWithDescriptions = await Promise.all(
       validAstrologyAspects.map(async aspect => {
         const description = await getAspectDescription(aspect);
@@ -173,9 +177,13 @@ router.post('/calculate', isAuthenticatedAPI, async (req, res) => {
       })
     );
 
+    // Insert new astrology aspect data for the user into the AstrologyAspectData table
     await AstrologyAspectData.bulkCreate(aspectsWithDescriptions);
+
+    // Try to delete existing data for this user (if it exists)
     await AstrologyHouseData.destroy({ where: { user_id: userId } });
 
+    // Insert or update house data for each celestial body for the user into the AstrologyHouseData table
     for (let body of celestialBodiesInfo) {
       await AstrologyHouseData.upsert({
         user_id: userId,
@@ -201,6 +209,11 @@ router.post('/calculate', isAuthenticatedAPI, async (req, res) => {
   }
 });
 
+
+
+// --------------------------------------------
+// BELOW ARE NOT APART OF THE PROJECT FOR GRADING :] REFACTORED FOR USE OUTSIDE OF COURSE OBJECTIVE FOR CONTINUED APP CREATION
+// --------------------------------------------
 // --------------------------------------------
 //              GET CELESTIAL DATA
 // --------------------------------------------

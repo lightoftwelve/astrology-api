@@ -1,0 +1,41 @@
+<div class="info-section">
+    <!-- Image Column -->
+    {{!-- <div class="image-column">
+        <table class="inner-glow-table">
+            <tr>
+                <td>
+                    <img src="/images/celestial_bodies/{{id}}.png" alt="{{name}}" width="50">
+                </td>
+            </tr>
+        </table>
+    </div> --}}
+
+    <!-- Display basic celestial information -->
+    <div class="left-column">
+        <table class="inner-glow-table">
+            <tr>
+                <td>
+                    <h2>Basic Celestial Information</h2>
+                    <p><strong>LST:</strong> {{LST}}</p>
+                    <p><strong>Ascendant:</strong> {{ascendant}}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Display house cusps -->
+    <div class="right-column">
+        <table class="inner-glow-table">
+            <tr>
+                <td>
+                    <h2>House Cusps</h2>
+                    <ul>
+                        {{#each houseCusps}}
+                        <li>{{this}}</li>
+                        {{/each}}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

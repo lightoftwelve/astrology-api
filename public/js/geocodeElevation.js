@@ -1,3 +1,6 @@
+// ------------------------------------------------------------
+//        HANDLES ADDRESS SEARCH & AUTOCOMPLETE CALLS
+// ------------------------------------------------------------
 // jQuery UI Datepicker
 $("#birthday").datepicker({
     changeMonth: true,
@@ -5,7 +8,6 @@ $("#birthday").datepicker({
     dateFormat: 'yy-mm-dd',
     yearRange: "-100:+0"
 });
-
 
 // Time dropdowns
 for (let i = 0; i <= 23; i++) {
@@ -15,13 +17,13 @@ for (let i = 0; i <= 59; i++) {
     $('#minute, #second').append(`<option value="${i}">${i}</option>`);
 }
 
-// Initialize the Autocomplete service
+// Initialize the autocomplete service
 const autocomplete = new google.maps.places.Autocomplete(
     (document.getElementById('location')), {
     types: ['geocode']
 });
 
-// Add an event listener for when a user selects a place
+// Event listener for when a user selects a place
 autocomplete.addListener('place_changed', function () {
     const place = autocomplete.getPlace();
     const lat = place.geometry.location.lat();
@@ -29,7 +31,7 @@ autocomplete.addListener('place_changed', function () {
     $("#latitude").val(lat);
     $("#longitude").val(lng);
 
-    // Send the coordinates to your server
+    // Send the coordinates to the server
     $.post('/api/coords/get-coords', { lat, lng }, function (data) {
         if (data && data.elevation) {
             $("#elevation").val(data.elevation);
@@ -37,7 +39,7 @@ autocomplete.addListener('place_changed', function () {
     });
 });
 
-// Form Submission
+// Form Submission to generate the birthchart
 $("#bc_userForm").submit(function (e) {
     e.preventDefault();
 
@@ -50,8 +52,6 @@ $("#bc_userForm").submit(function (e) {
         elevation: $("#elevation").val(),
         time: `${$("#hour").val().padStart(2, '0')}:${$("#minute").val().padStart(2, '0')}:${$("#second").val().padStart(2, '0')}`
     };
-
-    console.log(dataObj);
 
     fetch('api/celestial-routes/calculate', {
         method: 'POST',

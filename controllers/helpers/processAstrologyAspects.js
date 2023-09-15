@@ -1,3 +1,6 @@
+// --------------------------------------------------------
+//         FUNCTION TO PROCESS ASTROLOGY ASPECTS
+// --------------------------------------------------------
 const { calculateAngularSeparation } = require('./calculateAngularSeparation');
 const { getClosestAspect } = require('./getClosestAspect');
 
@@ -15,16 +18,17 @@ function processAstrologyAspects(celestialBodiesInfo) {
         continue;
       }
 
+      // Right Ascension and Declination of each Celestial Body
       const ra1 = body1.cellData.rightAscension;
       const dec1 = body1.cellData.declination;
       const ra2 = body2.cellData.rightAscension;
       const dec2 = body2.cellData.declination;
+
       // Calculate Angular Separation
       const angularSeparation = calculateAngularSeparation(ra1, dec1, ra2, dec2);
+
       // Calculate Closest Aspect
       const aspect = getClosestAspect(angularSeparation);
-
-      console.log(`Aspect between ${body1.name} and ${body2.name}: ${aspect}`);
 
       if (aspect !== null) {
         aspectsToInsert.push({

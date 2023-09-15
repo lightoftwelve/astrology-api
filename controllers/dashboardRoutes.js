@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { isAuthenticatedView } = require('../utils/isAuthenticated');
 
+// Renders Dashboard
 router.get('/', isAuthenticatedView, async (req, res) => {
     try {
         res.render(req.session.logged_in ? 'dashboard' : 'login', {
@@ -11,7 +12,7 @@ router.get('/', isAuthenticatedView, async (req, res) => {
     }
 });
 
-// login
+// Renders Login Page
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/');
@@ -20,6 +21,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+// Renders Birthchart form
 router.get('/new-natal-chart', isAuthenticatedView, (req, res) => {
     try {
         res.render("birthchart", {
@@ -29,15 +31,5 @@ router.get('/new-natal-chart', isAuthenticatedView, (req, res) => {
         res.status(500).json(err);
     }
 })
-
-// router.get('*', (req, res) => {
-//     try {
-
-//         res.render("404");
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// }
-// )
 
 module.exports = router;

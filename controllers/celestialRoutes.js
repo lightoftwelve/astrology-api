@@ -1,13 +1,13 @@
 require('dotenv').config();
 const router = require('express').Router();
 const { isAuthenticatedView } = require('../utils/isAuthenticated');
-const { CelestialBodyData, AstrologyAspectData, AstrologyHouseData, ZodiacSignData, Member, AspectDescriptionData } = require('../models/index');
+const { CelestialBodyData, AstrologyAspectData, AstrologyHouseData, ZodiacSignData, Member } = require('../models/index');
 const { getAspectDescription } = require('./helpers/getAspectDescription');
 
 // --------------------------------------------
 //         BIRTHCHART GENERATOR
 // --------------------------------------------
-// astrology/generate-personalized-astrology-natal-chart
+// Renders personalized birthchart data for the user (astrology/generate-personalized-astrology-natal-chart)
 router.get('/generate-personalized-astrology-natal-chart', isAuthenticatedView, async (req, res) => {
   try {
     const userId = req.session.member_id;
@@ -25,13 +25,11 @@ router.get('/generate-personalized-astrology-natal-chart', isAuthenticatedView, 
     const houseDataInstance = await AstrologyHouseData.findOne({
       where: { user_id: userId }
     });
-    console.log('House Data Instance', houseDataInstance);
 
     // Fetch celestial body data
     const celestialBodies = await CelestialBodyData.findAll({
       where: { user_id: userId }
     });
-    console.log('celestial Body instance', celestialBodies);
 
     // Fetch astrology aspect data
     const validAstrologyAspects = await AstrologyAspectData.findAll({
@@ -83,9 +81,8 @@ router.get('/generate-personalized-astrology-natal-chart', isAuthenticatedView, 
 // --------------------------------------------
 //         ZODIAC SUN SIGN
 // --------------------------------------------
-// astrology/zodiac-sign
+// Renders sun sign / zodiac sign for the user | astrology/zodiac-sign
 router.get('/zodiac-sign', isAuthenticatedView, async (req, res) => {
-
   const userId = req.session.member_id;
   console.log(req.session.member_id);
 
@@ -112,9 +109,9 @@ router.get('/zodiac-sign', isAuthenticatedView, async (req, res) => {
 });
 
 // --------------------------------------------
-//         EXPLORE ASPECTS
+//              EXPLORE ASPECTS
 // --------------------------------------------
-// astrology/explore-astrology-aspects
+// Renders page for user to select between two celestial bodies to view meaning | astrology/explore-astrology-aspects
 router.get('/explore-astrology-aspects', isAuthenticatedView, async (req, res) => {
   try {
     // Provide a list of celestial bodies and aspects for dropdown options
@@ -135,23 +132,22 @@ router.get('/explore-astrology-aspects', isAuthenticatedView, async (req, res) =
 // --------------------------------------------
 //         GET ASPECT DESCRIPTION
 // --------------------------------------------
-// astrology/get-aspect-description
+// Renders description of two chosen astrology aspects | astrology/get-aspect-description
 router.post('/get-aspect-description', isAuthenticatedView, async (req, res) => {
   try {
-    console.log("Reached the /get-aspect-description route!");
-
     const { body1, body2, aspect } = req.body;
 
+    // Retrieves aspect descriptions from database
     const description = await getAspectDescription({
       aspect: aspect,
       body_id_1: body1,
       body_id_2: body2
     });
-    console.log(description);
 
     const celestialBodies = ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn", "neptune", "uranus", "pluto"];
     const aspects = ["conjunction", "sextile", "opposition", "trine", "square"];
 
+    // Signals an error if two of the same planet is chosen
     if (body1 === body2) {
       res.render("exploreAspects", {
         error: "Please select two different celestial bodies.",
@@ -162,6 +158,7 @@ router.post('/get-aspect-description', isAuthenticatedView, async (req, res) => 
       return;
     }
 
+    // Renders aspectDescription
     res.render("aspectDescription", {
       body_id_1: body1,
       body_id_2: body2,
@@ -172,19 +169,6 @@ router.post('/get-aspect-description', isAuthenticatedView, async (req, res) => 
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
-  }
-});
-
-// --------------------------------------------
-//         Route for calculating aspects
-// --------------------------------------------
-router.get('/astrology-aspects', async (req, res) => {
-  axios.get(ASTRONOMY_API_URL, { params, headers })
-  try {
-    const aspectsData = await AstrologyAspectData.findAll();
-    res.json(aspectsData);
-  } catch (err) {
-    res.status(500).json({ message: "Server error", error: err });
   }
 });
 

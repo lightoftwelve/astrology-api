@@ -573,10 +573,53 @@ ul li {
 }
 
 /* --------------------------------------
-           ZODIAC SIGN
+           ASPECT SELECTION PAGE
   --------------------------------------*/
-.zodiacSign {
-    margin-top: 300px;
+.background {
+    width: 100%;
+    background-image: url('../images/login/galaxy-flower-background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: var(--white);
+    overflow: hidden;
+}
+
+.aspect form {
+    background: rgba(10, 10, 40, 0.9);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 300px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.aspect label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.aspect select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 16px;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+}
+
+.aspect input[type="submit"] {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
 }
 
 /* --------------------------------------

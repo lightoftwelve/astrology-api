@@ -1,3 +1,6 @@
+// --------------------------------------------------------
+//              CALCULATE ASCENDANT SIGN
+// --------------------------------------------------------
 function calculateAscendant(LST, latitude, declinationOfSun, raOfSun) {
   const H = LST - raOfSun; // Local Hour angle of the sun - Right Ascension
   const φ = latitude;

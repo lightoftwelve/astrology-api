@@ -11,34 +11,35 @@ const seedDatabase = async () => {
     await sequelize.sync({ force: true });
     console.log("Synced successfully.");
 
-    console.log("Seeding members...");
+    // Member seed data
     await Member.bulkCreate(memberData, {
         individualHooks: true,
         returning: true,
     });
     console.log("Seeded members successfully.");
 
-    console.log("Seeding astrology aspects...")
+    // Aspect seed data
     await AstrologyAspectData.bulkCreate(aspectData, {
         individualHooks: true,
         returning: true,
     });
     console.log("successfully seeded aspects");
 
-    console.log("seeding celestial data...")
+    // Planetary / Celestial body seed data
     await CelestialBodyData.bulkCreate(celestialData, {
         individualHooks: true,
         returning: true,
     });
     console.log("successfully seeded celestial data")
 
-    console.log("seeding zodiac data...")
+    // Sun sign / Zodiac seed data
     await ZodiacSignData.bulkCreate(zodiacData, {
         individualHooks: true,
         returning: true,
     });
     console.log("successfully seeded zodiac data")
 
+    // Aspect description seed data
     try {
         await AspectDescriptionData.bulkCreate(getAspectDescription, {
             individualHooks: true,
@@ -48,8 +49,6 @@ const seedDatabase = async () => {
     } catch (error) {
         console.error("Error seeding aspect descriptions:", error);
     }
-
-
 
     process.exit(0);
 };

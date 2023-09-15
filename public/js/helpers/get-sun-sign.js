@@ -1,3 +1,6 @@
+// --------------------------------------------
+//        GET SUN SIGN / ZODIAC SIGN
+// --------------------------------------------
 $(document).ready(function () {
     // Initialize the date picker
     $("#birthdate").datepicker();

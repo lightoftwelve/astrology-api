@@ -1,3 +1,6 @@
+// --------------------------------------------------------
+//          CALCULATE LOCAL SIDEREAL TIME
+// --------------------------------------------------------
 function calculateLST(longitudeInput, dateInput, timeInput) {
     const longitude = Number(longitudeInput);
 

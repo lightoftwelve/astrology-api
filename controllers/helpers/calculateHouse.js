@@ -1,6 +1,7 @@
-// ----------------------------------------
+// -------------------------------------------------------
+//              CALCULATE ASTROLOGY HOUSE
+// -------------------------------------------------------
 // Updated to start by checking if the azimuth is within the 1st house (which would be between the 12th house cusp and the 1st house cusp). If not, it loops through the rest of the house cusps to find the correct house.
-// ----------------------------------------
 function calculateHouse(azimuth, houseCusps) {
     console.log(`calculateHouse: azimuth: ${azimuth}, houseCusps: ${houseCusps}`);
 

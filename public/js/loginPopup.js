@@ -1,7 +1,9 @@
+// ------------------------------------------------------------------------
+//   HANDLE LOGIN METHODS: SIGN IN / SIGN OUT ON LOGIN PAGE & HEADER
+// ------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', (event) => {
     const loginBtn = document.getElementById('loginBtn');
     const closeButton = document.getElementById('closeButton');
-
     const loginForm = document.querySelector('form[action="/api/members/login"]');
     const loginOverlay = document.getElementById('loginOverlay');
     const newUserLink = document.getElementById('newUserLink');
@@ -94,6 +96,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         });
     }
-
 });
-// for updates when time: change error messages to say whats wrong: ie) password must have ... maybe one of those checkmarks for each or a strength calculator. Make forgot password and username section. update user accounts.
+// NTS: ON UPDATE: Change error messages to say whats wrong: ie) password must have ... maybe one of those checkmarks for each or a strength calculator. Make forgot password and username section. update user accounts.

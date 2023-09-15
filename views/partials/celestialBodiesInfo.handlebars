@@ -11,7 +11,6 @@
         {{#each celestialBodiesInfo}}
         <tr>
             <td class="houseTableContent">{{cellData.house}}</td>
-
             <td class="houseTableContent flex-center">
                 {{name}}<br><img src="/images/celestial_bodies/{{id}}.png" alt="{{name}}" width="50"></td>
             <td class="houseTableContent">
@@ -28,14 +27,13 @@
                             Distance KM: {{cellData.distanceKM}}<br>
                             Declination: {{cellData.declination}}<br>
                             Right Ascension: {{cellData.rightAscension}}<br>
-                            Constellation: {{cellData.constellationName}} ({{cellData.constellationShort}})<br>
+                            Constellation: {{cellData.constellationName}}<br>
                             Magnitude: {{cellData.magnitude}}<br>
                             House: {{cellData.house}}
                         </td>
                     </tr>
                 </table>
             </td>
-
         </tr>
         {{/each}}
     </tbody>

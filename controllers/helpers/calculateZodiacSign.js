@@ -1,3 +1,6 @@
+// --------------------------------------------------------
+//        DETERMINE SUN SIGN / ZODIAC SIGN
+// --------------------------------------------------------
 function calculateZodiacSign(date) {
     const [year, month, day] = date.split('-').map(Number); // 0000-00-00 format
 

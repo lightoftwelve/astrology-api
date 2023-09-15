@@ -1,3 +1,6 @@
+// --------------------------------------------
+//          PLANET INFORMATION
+// --------------------------------------------
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -95,6 +98,5 @@ CelestialBodyData.init(
         ],
     }
 );
-
 
 module.exports = CelestialBodyData;

@@ -1,13 +1,12 @@
 require('dotenv').config();
-
 const path = require('path');
 const express = require('express');
 const cors = require('cors')
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-const helmet = require('helmet');
 const AWS = require('aws-sdk');
+// const helmet = require('helmet');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -38,14 +37,14 @@ const sess = {
 };
 
 app.use(cors({
-  origin: ['http://localhost:3001', 'https://www.lightoftwelve.com', 'https://code.jquery.com', 'https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js']
+  origin: ['http://localhost:3001', 'https://www.lightoftwelve.com', 'https://code.jquery.com', 'https://maps.googleapis.com/maps/api/js?key=GOOGLE_GEOCODING_API_KEY&libraries=places', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js']
 }));
 
 // app.use(helmet({
 //   contentSecurityPolicy: {
 //     directives: {
 //       defaultSrc: ["'self'"],
-//       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://code.jquery.com', 'https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js'],
+//       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'https://code.jquery.com', 'https://maps.googleapis.com/maps/api/js?key=GOOGLE_GEOCODING_API_KEY&libraries=places', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js'],
 //     },
 //   },
 // }));

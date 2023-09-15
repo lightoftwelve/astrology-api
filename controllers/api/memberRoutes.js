@@ -2,10 +2,9 @@ const router = require('express').Router();
 const { check, validationResult } = require('express-validator');
 const { Op } = require("sequelize");
 const { Member } = require('../../models');
-const { isAuthenticatedView, isAuthenticatedAPI } = require('../../utils/isAuthenticated');
+const { isAuthenticatedAPI } = require('../../utils/isAuthenticated');
 
-// api/members/login
-// router.post('/login', async (req, res) => {
+// User login with username or password | api/members/login
 router.post('/login',
   [
     check('identifier', 'Username or Email is required').notEmpty(),
@@ -13,14 +12,17 @@ router.post('/login',
   ],
   async (req, res) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
     try {
       if (!req.body.identifier) {
         return res.status(400).json({ message: 'Username or Email is required.' });
       }
 
+      // checks for username or email
       const memberData = await Member.findOne({
         where: {
           [Op.or]: [
@@ -30,14 +32,12 @@ router.post('/login',
         }
       });
 
-      console.log("User retrieved:", memberData);
       if (!memberData) {
         return res.status(400).json({ message: 'Incorrect username or password combination, please try again' });
       }
 
       const validPassword = await memberData.validatePassword(req.body.password);
 
-      console.log("Password valid:", validPassword);
       if (!validPassword) {
         return res.status(400).json({ message: 'Incorrect username or password combination, please try again' });
       }
@@ -54,7 +54,7 @@ router.post('/login',
     }
   });
 
-// api/members/status
+// Checks sign in status of user for header signin/out button | api/members/status
 router.get('/status', (req, res) => {
   if (req.session.logged_in) {
     res.json({ loggedIn: true });
@@ -63,7 +63,7 @@ router.get('/status', (req, res) => {
   }
 });
 
-// api/members/register
+// Allows members to sign up for an account | api/members/register
 router.post('/register',
   [
     check('username', 'Username is required').notEmpty(),
@@ -104,25 +104,7 @@ router.post('/register',
     }
   });
 
-// api/members/user
-router.get('/user', isAuthenticatedAPI, async (req, res) => {
-  try {
-    const userId = req.session.member_id;
-
-    const user = await Member.findByPk(userId);
-
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    res.json({ first_name: user.first_name });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// api/members/logout
+// Destroys session when member logs out | api/members/logout
 router.post('/logout', (req, res) => {
   if (req.session && req.session.logged_in) {
     req.session.destroy(err => {
@@ -133,6 +115,23 @@ router.post('/logout', (req, res) => {
     });
   } else {
     return res.status(404).json({ message: 'No session found.' });
+  }
+});
+
+// api/members/user
+router.get('/user', isAuthenticatedAPI, async (req, res) => {
+  try {
+    const userId = req.session.member_id;
+
+    const user = await Member.findByPk(userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ first_name: user.first_name });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

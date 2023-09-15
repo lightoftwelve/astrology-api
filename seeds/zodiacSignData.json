@@ -3,84 +3,84 @@
         "sign": "Aries",
         "symbol": "Ram",
         "dates": "March 21 - April 19",
-        "image_url": "./public/images/zodiacSigns/aries/aries-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/aries/aries-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Taurus",
         "symbol": "Bull",
         "dates": "April 20 - May 20",
-        "image_url": "./public/images/zodiacSigns/taurus/taurus-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/taurus/taurus-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Gemini",
         "symbol": "Twins",
         "dates": "May 21 - June 21",
-        "image_url": "./public/images/zodiacSigns/gemini/gemini-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/gemini/gemini-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Cancer",
         "symbol": "Crab",
         "dates": "June 22 - July 22",
-        "image_url": "./public/images/zodiacSigns/cancer/cancer-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/cancer/cancer-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Leo",
         "symbol": "Lion",
         "dates": "July 23 - August 22",
-        "image_url": "./public/images/zodiacSigns/leo/leo-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/leo/leo-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Virgo",
         "symbol": "Virgin",
         "dates": "August 23 - September 22",
-        "image_url": "./public/images/zodiacSigns/virgo/virgo-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/virgo/virgo-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Libra",
         "symbol": "Balance",
         "dates": "September 23 - October 23",
-        "image_url": "./public/images/zodiacSigns/libra/libra-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/libra/libra-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Scorpio",
         "symbol": "Scorpion",
         "dates": "October 24 - November 21",
-        "image_url": "./public/images/zodiacSigns/scorpio/scorpio-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/scorpio/scorpio-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Sagittarius",
         "symbol": "Archer",
         "dates": "November 22 - December 21",
-        "image_url": "./public/images/zodiacSigns/sagittarius/sagittarius-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/sagittarius/sagittarius-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Capricorn",
         "symbol": "Goat",
         "dates": "December 22 - January 19",
-        "image_url": "./public/images/zodiacSigns/capricorn/capricorn-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/capricorn/capricorn-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Aquarius",
         "symbol": "Water Bearer",
         "dates": "January 20 - February 18",
-        "image_url": "./public/images/zodiacSigns/aquarius/aquarius-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/aquarius/aquarius-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     },
     {
         "sign": "Pisces",
         "symbol": "Fish",
         "dates": "February 19 - March 20",
-        "image_url": "./public/images/zodiacSigns/pisces/pisces-zodiac-sign-zodiac-woman.png",
+        "image_url": "/images/zodiacSigns/pisces/pisces-zodiac-sign-zodiac-woman.png",
         "sign_meaning": "placeholder"
     }
 ]
