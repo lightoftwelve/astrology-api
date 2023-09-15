@@ -4,7 +4,7 @@
 Welcome to the Light of Twelve's astrology app. Dive into a digital sanctuary where the age-old wisdom of astrology intersects with modern aesthetics. This platform allows you to explore your astrological birth chart, offering insights into your personality, strengths, and potential, all while providing an intuitive and immersive experience.
 
 ## Table of Contents
-- [Features](fFeatures)
+- [Features](#features)
 - [Usage Guide](#usage-guide)
 - [Screenshots](#screenshots)
 - [Technologies Used](#technologies-used)
@@ -39,11 +39,11 @@ Date
 - <b>Chart Exploration</b>: View your planets, houses, and aspects to delve into detailed descriptions and insights.
 
 ## Screenshots
-![Login Page](images/lightoftwelve-astrology-screenshot-1.png)
-![Website Footer](images/lightoftwelve-astrology-screenshot-2.png)
-![Signin Screen](images/lightoftwelve-astrology-screenshot-3.png)
-![Sample birthchart rendering - astrology houses](images/lightoftwelve-astrology-screenshot-4.png)
-![Sample birthchart rendering - astrology aspects](images/lightoftwelve-astrology-screenshot-5.png)
+![Login Page](/public/images/lightoftwelve-astrology-screenshot-1.png)
+![Website Footer](/public/images/lightoftwelve-astrology-screenshot-2.png)
+![Signin Screen](/public/images/lightoftwelve-astrology-screenshot-3.png)
+![Sample birthchart rendering - astrology houses](/public/images/lightoftwelve-astrology-screenshot-4.png)
+![Sample birthchart rendering - astrology aspects](/public/images/lightoftwelve-astrology-screenshot-5.png)
 
 ## Technologies Used
 - Node.js
