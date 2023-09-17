@@ -116,6 +116,7 @@ router.post('/calculate', isAuthenticatedAPI, async (req, res) => {
         cellData: cellData
       };
     });
+    console.log('testing', celestialBodiesInfo);
 
     // Log detailed information for each celestial body
     celestialBodiesInfo.forEach(body => {

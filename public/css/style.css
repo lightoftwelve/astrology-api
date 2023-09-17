@@ -9,11 +9,10 @@
     --darker: #251342;
     --darkest: #130A21;
     --black: #000;
+    -lightgrey: #f6f7f7;
     --soft-glow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 30px var(--gold), 0 0 40px var(--gold);
     /* --soft-glow: 0 0 3px var(--gold), 0 0 10px var(--gold), 0 0 3px var(--gold), 0 0 40px var(--gold); */
-
 }
-
 
 * {
     font-family: 'Open Sans', sans-serif;
@@ -246,7 +245,6 @@ nav {
     line-height: 0.5;
     margin: 0.2em 0;
     font-family: 'Cormorant', serif;
-
 }
 
 .loginPageColumn h1 {
@@ -446,49 +444,165 @@ nav {
     padding: 20px;
 }
 
-.astrology-intro {
-    width: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    color: var(--black);
-}
-
 /* --------------------------------------
             INTRODUCTION PAGE
   --------------------------------------*/
 .astrology-intro {
-    background-image: url('../images/login/galaxy-flower-background.jpg');
-    padding: 2rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    /* margin: 2rem auto; */
-    max-width: 1200px;
+    position: relative;
+}
+
+.page-header {
+    height: auto;
+    min-height: 600px;
+    background-image: url('../images/decorative_images/lightoftwelve-astrology-banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.intro-overview {
+    position: relative;
+    z-index: 1;
+    margin-top: -150px;
+    background: transparent;
+    /* ensure it's transparent */
+}
+
+.intro-overview::before {
+    content: '';
+    position: absolute;
+    top: 150px;
+    /* Starts after the overlapped portion */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--black);
+    z-index: -1;
+}
+
+.content {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px 50px 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* For the custom table header look */
+.item .custom-th {
+    background-color: rgba(10, 10, 40, 0.9);
+    border: 1px solid var(--gold);
+    padding: 15px;
+    text-align: center;
+    text-shadow: var(--soft-glow);
+    background-image: linear-gradient(45deg, rgba(10, 10, 40, 0.8), rgba(10, 10, 40, 0.9));
+    font-weight: bold;
+    width: 90%;
+}
+
+.custom-th,
+.custom-td {
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-th {
+    align-items: center;
+}
+
+.custom-td {
+    min-height: 170px;
+}
+
+.custom-td p {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 90%;
+}
+
+.item .custom-td {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--gold);
+    padding: 15px;
+    text-align: left;
+    width: 90%;
+}
+
+.item {
+    min-height: 500px;
+    flex: 1;
+    padding: 10px 20px;
+    margin: 15px;
+    box-shadow: 0 0 7px var(--white), 0 0 7px var(--white), 0 0 7px var(--white);
+    background-color: var(--darkest);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.item img {
+    width: 80%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item h2 {
+    width: 90%;
+    padding: 10px 10px;
+    text-align: center;
+    color: var(--white);
+    margin-top: 10px;
+    border: 1px var(--white) solid;
+}
+
+.item p {
+    color: var(--white);
+    border: 1px var(--white) solid;
 }
 
 .introBanner {
+    margin: 0;
     display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding: 50px;
-    margin-bottom: 20px;
+    text-shadow: var(--soft-glow);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.introBanner h1 {
-    text-align: center;
+/* found on intro
+.glow-table {
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold), 0 0 20px var(--gold);
+    overflow: hidden;
+    border-collapse: collapse;
+    border: none;
+    background-image: url('../images/decorative_images/lightoftwelve-astrology-banner.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.glow-table td {
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px var(--white) solid;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-
-.astrology-intro h1 {
-    text-align: center;
-    color: var(--gold);
-    padding: 2rem;
-    border-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.2);
-}
+} */
 
 .astrology-basics,
 .why-it-matters {
@@ -933,13 +1047,9 @@ td img {
     border-radius: 50%;
     padding: 20px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2),
-        /* Original shadow */
         0 0 10px var(--gold),
-        /* Added glow */
         0 0 20px var(--gold),
-        /* More glow for intensity */
         0 0 20px var(--gold);
-    /* Even more glow */
     margin: 10px 0;
 }
 
@@ -979,7 +1089,6 @@ td img {
     font-weight: bold;
     background-color: rgba(10, 10, 40, 0.9);
 }
-
 
 /* --------------------------------------
            BASIC CELESTIAL INFORMATION
@@ -1071,12 +1180,10 @@ td img {
     font-weight: bold;
     background-color: rgba(10, 10, 40, 0.9);
     text-align: left;
-    /* Align to the left */
 }
 
 .planet-info {
     text-align: left;
-    /* Align to the left */
 }
 
 /* --------------------------------------
@@ -1263,27 +1370,35 @@ footer a:hover {
         color: var(--purple);
     }
 
-    /* .houseTableContent {
-        width: 100%;
-    } */
-
     .subheader {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
     }
 
-    /* table {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-wrap: wrap;
-    } */
+    .intro-overview {
+        margin-top: 0;
+    }
 
-    /* thead {
-        display: none;
-    } */
+    .intro-overview::before {
+        top: 0;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .item {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        margin: 15px 0;
+    }
+
+    .item img {
+        width: 30%;
+        margin: 0 auto;
+    }
 
     .footer-content {
         display: flex;
@@ -1326,6 +1441,34 @@ footer a:hover {
     }
 }
 
+@media (min-width: 992px) {
+    .item {
+        min-height: 525px;
+    }
+}
+
+/* Adjust styles for screen widths between 768px and 991px (tablets) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .item {
+        flex-basis: 48%;
+        margin: 10px 1%;
+    }
+
+    .page-header {
+        min-height: 500px;
+        background-size: contain;
+        background-position: center top;
+        padding: 20px 0;
+        background-color: var(--darkest);
+    }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+    .page-header {
+        min-height: 400px;
+    }
+}
+
 @media (max-width: 768px) {
     .loginPageColumn p {
         font-size: 1.5em;
@@ -1334,6 +1477,12 @@ footer a:hover {
     .loginPageColumn h1 {
         font-size: 2.5em;
     }
+
+    .intro-overview {
+        margin-top: 0;
+        /* remove negative margin */
+    }
+
 }
 
 @media (max-width: 600px) {
@@ -1363,5 +1512,14 @@ footer a:hover {
     .popup button#closeButton {
         top: 5px;
         right: 5px;
+    }
+
+    .page-header {
+        background-size: contain;
+        background-position: center top;
+        min-height: 230px;
+        /* mobile min height */
+        padding: 20px 0;
+        background-color: var(--darkest);
     }
 }

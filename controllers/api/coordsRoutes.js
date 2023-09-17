@@ -2,7 +2,7 @@ const router = require('express').Router();
 require('dotenv').config();
 const axios = require('axios');
 
-// Gets longitude, latitude & elevation coordinates from Google API | /api/coords/get-elevation
+// Gets longitude, latitude & elevation coordinates from Google API | /api/coords/get-coords
 router.post('/get-coords', async (req, res) => {
     const { lat, lng } = req.body;
 
@@ -15,6 +15,8 @@ router.post('/get-coords', async (req, res) => {
         // Send a GET request to the Google Maps Elevation API
         const response = await axios.get(apiUrl);
         const data = response.data;
+
+        console.log(data);
 
         // Check if the API response contains elevation data
         if (data.results && data.results[0] && data.results[0].elevation) {
