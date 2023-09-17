@@ -6,10 +6,10 @@ const axios = require('axios');
 router.post('/get-coords', async (req, res) => {
     const { lat, lng } = req.body;
 
-    const GOOGLE_GEOCODING_API_KEY = process.env.GOOGLE_GEOCODING_API_KEY;
+    const GM_BACKEND_KEY_API = process.env.GM_BACKEND_KEY_API;
 
     // Construct the API URL with the provided coordinates and API key
-    const apiUrl = `https://maps.googleapis.com/maps/api/elevation/json?locations=${lat},${lng}&key=${GOOGLE_GEOCODING_API_KEY}`;
+    const apiUrl = `https://maps.googleapis.com/maps/api/elevation/json?locations=${lat},${lng}&key=${GM_BACKEND_KEY_API}`;
 
     try {
         // Send a GET request to the Google Maps Elevation API
