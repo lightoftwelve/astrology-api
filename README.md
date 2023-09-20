@@ -104,7 +104,7 @@ This project was independently developed by myself, Victoria Alawi.
 
 ## Acknowledgements
 I would like to express my gratitude to the following individuals for their invaluable assistance and support during the initial development of this project:
-- **AGabriels (Tutor)**: I want to express my sincere gratitude to AGabriels for their exceptional mentorship, making the complexities of this project's new concepts easily understandable. Their support was instrumental in my efforts to overcome challenges and grasp the foundational aspects of this project at a deeper level.
+- **AGabriels**: I want to express my sincere gratitude to AGabriels for their exceptional mentorship in helping me grasp the foundational concepts related to this project. Their support was instrumental in my efforts to overcome challenges and gain a deeper understanding of the subject matter.
 - **Sean Roshan (Teacher) & Serena Guo (TA)**: I want to extend my thanks to Sean Roshan and Serena Guo for providing me with essential insights and guidance throughout the initial stages of this project.
 
 I look forward to continuing this project and building upon the foundation they have helped me establish | September 14, 2023.
